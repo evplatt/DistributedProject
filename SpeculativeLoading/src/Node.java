@@ -6,19 +6,31 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class Node {
 
 	static ArrayList<ServerRecord> servers = new ArrayList<ServerRecord>();
 	static int numServers;
 	static int myId;
+	static ArrayList<Calculation> calcs;
+	static ArrayList<Message> waiting_calcs;	
+	
+	static Timer timer;
+	
+	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
 	
 	public static void main(String[] args) {
+		
+		calcs = new ArrayList<Calculation>();
+		waiting_calcs = new ArrayList<Message>();
 		
 		Scanner sc = new Scanner(System.in);
 		myId = sc.nextInt()-1;  //let's 0-index in code
 		numServers = sc.nextInt();
 		sc.nextLine();
+		calcwatcher watcher = new calcwatcher();
 		
 		for (int i = 0; i < numServers; i++) {
 			while (servers.size()==i){ //keep trying if there was an error
@@ -40,6 +52,8 @@ public class Node {
 		}
 		sc.close();
 		
+		timer.scheduleAtFixedRate(watcher, 0, 1000); //maintain calculations every second
+		
 		System.out.println("Starting TCP server on port "+servers.get(myId).port);
 		
 		try {
@@ -55,22 +69,34 @@ public class Node {
 		}
 	}
 	
-	static String handleCommand(String command){
+	static String handleMessage(Message msg){
 			
 			String retMsg="";
-			String[] tokens = command.split(" ");
 			
-			if (tokens[0].equals("start")){
-			
+			if (msg.command.equals("start")){
+				if (calcs.size() < max_calcs){
+					startCalcFromMessage(msg);
+				}
+				else
+					waiting_calcs.add(msg); //don't determine load until running
 			}
-			if (tokens[0].equals("abort")){
-				
+			else if (msg.command.equals("abort")){
+				for (int i=0; i<calcs.size(); i++){
+					if (calcs.get(i).id == msg.taskId){
+						calcs.get(i).abort();
+					}
+				}
 			}
 			
 			return retMsg;
-		
+
 	}
 
+	static void startCalcFromMessage(Message msg){
+		
+		calcs.add(new Calculation(msg.taskId, msg.senderId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
+		
+	}
 	
 	
 	static class tcpRequestThread extends Thread{
@@ -88,9 +114,9 @@ public class Node {
 			try {
 				Scanner tcpIn = new Scanner(socket.getInputStream());
 				PrintWriter tcpOut = new PrintWriter(socket.getOutputStream());
-				String command = tcpIn.nextLine();
+				Message msg = new Message(tcpIn.nextLine());
 				
-				String responseStr = handleCommand(command);
+				String responseStr = handleMessage(msg);
 				tcpOut.println(responseStr);
 				tcpOut.flush();
 				
@@ -104,6 +130,32 @@ public class Node {
 			
 		}
 		
+	}
+	
+
+	static class calcwatcher extends TimerTask {
+		
+		@Override
+		public void run() {
+			
+			for (int i=0; i<calcs.size(); i++){
+				
+				if (calcs.get(i).isAborted()){
+					calcs.remove(i);
+				}
+				else if (calcs.get(i).isComplete()){
+					calcs.remove(i);
+				}
+				
+			}
+			
+			while (calcs.size() < max_calcs && waiting_calcs.size() > 0){
+				startCalcFromMessage(waiting_calcs.get(0));
+				waiting_calcs.remove(0);
+			}
+			
+		}
+	
 	}
 	
 	
