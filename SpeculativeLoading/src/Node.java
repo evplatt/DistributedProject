@@ -9,6 +9,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TimerTask;
 import java.util.Timer;
@@ -26,6 +27,12 @@ public class Node {
 	
 	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
 	static final int num_starts = 3; //Set to number of servers that should be sent a start message for a certain calculation
+
+	// Print line to standard output with ID information.
+	// (Helps to sort out multiple node messages.)
+	public static void print(String s) {
+		System.out.println("<" + myId + ">: " + s + "\n");
+	}
 	
 	public static void main(String[] args) {
 		
@@ -35,6 +42,7 @@ public class Node {
 		
 		Scanner sc = new Scanner(System.in);
 		myId = sc.nextInt()-1;  //let's 0-index in code
+		//print("set ID " + myId);
 		numServers = sc.nextInt();
 		sc.nextLine();
 		calcwatcher watcher = new calcwatcher();
@@ -57,8 +65,23 @@ public class Node {
 				servers.add(peer);
 			}
 		}
-		sc.close();
+		// server configurations can include additional commands at the end
+		try {
+			while (true) {
+				String command = sc.nextLine();
+				print("received command: '" + command + "'");
+				// TODO: parse strings into a list of initial commands to run
+				// (e.g. initial messages to be sent)
+			}
+		} catch (NoSuchElementException e) {
+			// ignore (this will happen if no command lines are given
+			// or none are left)
+			//e.printStackTrace();
+		} finally {
+			sc.close();
+		}
 		
+		timer = new Timer();
 		timer.scheduleAtFixedRate(watcher, 0, 1000); //maintain calculations every second
 		
 		System.out.println("Starting TCP server on port "+servers.get(myId).port);
