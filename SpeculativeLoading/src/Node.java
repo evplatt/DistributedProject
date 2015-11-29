@@ -9,6 +9,9 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.TimerTask;
@@ -32,6 +35,10 @@ public class Node {
 	// (Helps to sort out multiple node messages.)
 	public static void print(String s) {
 		System.out.println("<" + myId + ">: " + s + "\n");
+	}
+
+	public static void sleep(int sec) {
+		try { Thread.sleep(sec * 1000); } catch (InterruptedException e) {}
 	}
 	
 	public static void main(String[] args) {
@@ -66,23 +73,73 @@ public class Node {
 			}
 		}
 		// server configurations can include additional commands at the end
+		ArrayList<Message> initialMessageList = new ArrayList<Message>();
 		try {
 			while (true) {
 				String command = sc.nextLine();
-				print("received command: '" + command + "'");
-				// TODO: parse strings into a list of initial commands to run
+				String[] tokens = command.split(" ");
+				if ((0 == tokens.length) || (tokens[0].charAt(0) == '#')) {
+					// skip blanks and "#" comments
+					continue;
+				}
+				String cmdName = tokens[0];
+				ArrayList<String> inputs = new ArrayList<String>();
+				Map<String, String> params = new HashMap<String, String>();
+				int targetNode = -1; // see below
+				for (String kv : tokens) {
+					// strip out key=value arguments; put anything else
+					// into an ordered array
+					String[] keyValuePair = kv.split("=");
+					inputs.add(kv);
+					if (keyValuePair.length == 2) {
+						params.put(keyValuePair[0], keyValuePair[1]);
+					} else {
+						inputs.add(kv);
+					}
+					// parse out some common parameters for convenience
+					if (params.containsKey("node")) {
+						targetNode = Integer.parseInt(params.get("node"));
+					}
+				}
+				print("received command: " + command);
+				// parse strings into a list of initial commands to run
 				// (e.g. initial messages to be sent)
+				if (tokens[0].equals("start")) {
+					// parse arguments (also use "node" from above)
+					int taskId = (params.containsKey("task"))
+							? Integer.parseInt(params.get("task"))
+							: currTaskId++;
+					assert(targetNode >= 0);
+					assert(targetNode < servers.size());
+					CommandMessage cmdMsg = new CommandMessage(taskId, myId, "start", targetNode);
+					initialMessageList.add(cmdMsg);
+				} else {
+					throw new IllegalArgumentException("unrecognized command: " + command);
+				}
 			}
 		} catch (NoSuchElementException e) {
 			// ignore (this will happen if no command lines are given
 			// or none are left)
 			//e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			System.exit(1);
 		} finally {
 			sc.close();
 		}
 		
 		timer = new Timer();
 		timer.scheduleAtFixedRate(watcher, 0, 1000); //maintain calculations every second
+
+		if (!initialMessageList.isEmpty()) {
+			print("waiting for node servers...");
+			sleep(2); // give servers a chance to start
+			print("sending initial messages...");
+			for (Message initMsg : initialMessageList) {
+				print("sending " + initMsg.toString() + "...");
+				sendMsgTo(initMsg.destId, initMsg);
+			}
+		}
 		
 		System.out.println("Starting TCP server on port "+servers.get(myId).port);
 		
@@ -97,6 +154,42 @@ public class Node {
 		} catch (IOException e) {
 			System.err.println("Server aborted:" + e);
 		}
+	}
+
+	static boolean sendMsgTo(int serverId, Message msg) {
+		boolean ok = false; // initially...
+		{
+			try {
+				InetSocketAddress sockaddr = new InetSocketAddress(servers.get(serverId).ip,servers.get(serverId).port);
+				Socket socket = new Socket();
+				socket.connect(sockaddr, 100); //100ms timeout
+				
+				PrintStream tcpOut = new PrintStream(socket.getOutputStream());	
+				
+				tcpOut.println(msg.serialize());
+				tcpOut.flush();
+				
+				if (msg instanceof CommandMessage) {
+					CommandMessage cmdMsg = (CommandMessage)msg;
+					if (cmdMsg.command.equals("start")) {
+						sent_start_commands.add(cmdMsg);
+					}
+				}
+				
+				socket.close();
+				ok = true;
+			}
+			catch (SocketTimeoutException e){
+				e.printStackTrace(); // debug
+			}
+			catch (SocketException e){
+				e.printStackTrace(); // debug
+			}
+			catch (IOException e){
+				System.out.println(e.getMessage());
+			}
+		}
+		return ok;
 	}
 	
 	static String handleMessage(CommandMessage msg){
@@ -130,13 +223,12 @@ public class Node {
 	
 	static void sendStartCommand(){
 		
-		CommandMessage cmd = new CommandMessage(currTaskId++,myId,"start");
-		
 		//send a start command to the next 3 servers
 		int i = 0;
 		for (i=1; i<=3; i++){
 			
 			int serverid = (myId+i)%servers.size();
+			CommandMessage cmd = new CommandMessage(currTaskId++,myId,"start",serverid);
 			
 			try{
 				InetSocketAddress sockaddr = new InetSocketAddress(servers.get(serverid).ip,servers.get(serverid).port);

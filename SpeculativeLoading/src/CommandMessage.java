@@ -1,5 +1,5 @@
 
-public class CommandMessage {
+public class CommandMessage extends Message {
 
 	public int taskId;
 	public int senderId;
@@ -8,17 +8,18 @@ public class CommandMessage {
 	public int latest_status;  //to be set when status message received (calculating node will not set this)
 	
 	public CommandMessage(String packetdata){ //parses a message into a CommandMessage object
-		
+		super(-1); // fixed below (super() must be first)
 		String[] tokens = packetdata.split(",");
-		taskId = Integer.parseInt(tokens[0]);
-		senderId = Integer.parseInt(tokens[1]);
-		command = tokens[2];
+		destId = Integer.parseInt(tokens[0]); // fix destId in superclass
+		taskId = Integer.parseInt(tokens[1]);
+		senderId = Integer.parseInt(tokens[2]);
+		command = tokens[3];
 		latest_status = 0;
 		
 	}
 	
-	public CommandMessage(int id, int senderId, String command){
-		
+	public CommandMessage(int id, int senderId, String command, int destId){
+		super(destId);
 		this.taskId = id;
 		this.senderId = senderId;
 		this.command = command;
@@ -27,7 +28,7 @@ public class CommandMessage {
 	
 	public String serialize(){
 		
-		return taskId + "," + senderId + "," + command;
+		return destId + "," + taskId + "," + senderId + "," + command;
 		
 	}
 	

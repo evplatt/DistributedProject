@@ -65,7 +65,6 @@ run_test() {
     stdin_data="$((i + 1))\n${nserv}\n${server_info}"
     # if any parameters are given, include them
     setup_file="${test_name}/setup-${i}.txt"
-    echo "? $setup_file"
     if [ -r "$setup_file" ] ; then
       stdin_data="${stdin_data}`cat $setup_file`";
     fi
@@ -73,7 +72,7 @@ run_test() {
     printf "${stdin_data}" | java Node &
     srv_ids[$i]=$!
   done
-  sleep 2
+  sleep 30 # arbitrary (increase to length of test)
   kill_all
 }
 
