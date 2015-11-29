@@ -1,8 +1,12 @@
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,16 +19,19 @@ public class Node {
 	static int numServers;
 	static int myId;
 	static ArrayList<Calculation> calcs;
-	static ArrayList<Message> waiting_calcs;	
-	
+	static ArrayList<CommandMessage> waiting_calcs;	
+	static ArrayList<CommandMessage> sent_start_commands;
+	static int currTaskId = 0;
 	static Timer timer;
 	
 	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
+	static final int num_starts = 3; //Set to number of servers that should be sent a start message for a certain calculation
 	
 	public static void main(String[] args) {
 		
 		calcs = new ArrayList<Calculation>();
-		waiting_calcs = new ArrayList<Message>();
+		waiting_calcs = new ArrayList<CommandMessage>();
+		sent_start_commands = new ArrayList<CommandMessage>();
 		
 		Scanner sc = new Scanner(System.in);
 		myId = sc.nextInt()-1;  //let's 0-index in code
@@ -69,7 +76,7 @@ public class Node {
 		}
 	}
 	
-	static String handleMessage(Message msg){
+	static String handleMessage(CommandMessage msg){
 			
 			String retMsg="";
 			
@@ -82,7 +89,7 @@ public class Node {
 			}
 			else if (msg.command.equals("abort")){
 				for (int i=0; i<calcs.size(); i++){
-					if (calcs.get(i).id == msg.taskId){
+					if (calcs.get(i).taskId == msg.taskId){
 						calcs.get(i).abort();
 					}
 				}
@@ -92,12 +99,52 @@ public class Node {
 
 	}
 
-	static void startCalcFromMessage(Message msg){
+	static void startCalcFromMessage(CommandMessage msg){
 		
-		calcs.add(new Calculation(msg.taskId, msg.senderId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
+		calcs.add(new Calculation(msg.taskId, msg.senderId, myId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
 		
 	}
 	
+	static void sendStartCommand(){
+		
+		CommandMessage cmd = new CommandMessage(currTaskId++,myId,"start");
+		
+		//send a start command to the next 3 servers
+		int i = 0;
+		for (i=1; i<=3; i++){
+			
+			int serverid = (myId+i)%servers.size();
+			
+			try{
+				InetSocketAddress sockaddr = new InetSocketAddress(servers.get(serverid).ip,servers.get(serverid).port);
+				Socket socket = new Socket();
+				socket.connect(sockaddr, 100); //100ms timeout
+				
+				PrintStream tcpOut = new PrintStream(socket.getOutputStream());	
+				
+				tcpOut.println(cmd.serialize());
+				tcpOut.flush();
+				
+				sent_start_commands.add(cmd);
+				
+				socket.close();
+			}
+			catch (SocketTimeoutException e){
+				i = (i<(numServers-1) ? i+1 : 0); //loop servers
+				continue;
+			}
+			catch (SocketException e){
+				i = (i<(numServers-1) ? i+1 : 0); //loop servers
+				continue;
+			}
+			catch (IOException e){
+				System.out.println(e.getMessage());
+			}
+			
+		}
+		
+		
+	}
 	
 	static class tcpRequestThread extends Thread{
 		
@@ -114,13 +161,12 @@ public class Node {
 			try {
 				Scanner tcpIn = new Scanner(socket.getInputStream());
 				PrintWriter tcpOut = new PrintWriter(socket.getOutputStream());
-				Message msg = new Message(tcpIn.nextLine());
+				CommandMessage msg = new CommandMessage(tcpIn.nextLine());
 				
 				String responseStr = handleMessage(msg);
 				tcpOut.println(responseStr);
 				tcpOut.flush();
-				
-				
+			
 				socket.close();
 				tcpIn.close();
 				
@@ -145,6 +191,7 @@ public class Node {
 				}
 				else if (calcs.get(i).isComplete()){
 					calcs.remove(i);
+					
 				}
 				
 			}
@@ -153,6 +200,10 @@ public class Node {
 				startCalcFromMessage(waiting_calcs.get(0));
 				waiting_calcs.remove(0);
 			}
+						
+			//monitor status of calculations commanded by this node
+			
+			
 			
 		}
 	

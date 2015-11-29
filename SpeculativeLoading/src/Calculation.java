@@ -8,7 +8,8 @@ public class Calculation {
 	boolean aborted = false;
 	static calculator calc; 
 	int load; //system load factor (0 to 100)
-	public int id;
+	public int taskId;
+	public int nodeId;
 	public int initiatorId;
 	
 	static class calculator extends TimerTask {
@@ -23,16 +24,20 @@ public class Calculation {
 	
 	}
 	
-	public Calculation(int id, int senderId){
+	public Calculation(int taskId, int senderId, int nodeId){
 		
 		this.load = 0;
-		this.id = id;
+		this.taskId = taskId;
+		this.initiatorId = senderId;
+		this.nodeId = nodeId;
 		
 	}
 	
-	public Calculation(int id, int senderId, int load){
+	public Calculation(int taskId, int senderId, int nodeId, int load){
 		
-		this.id = id;
+		this.taskId = taskId;
+		this.initiatorId = senderId;
+		this.nodeId = nodeId;
 		this.load = load;
 		
 	}
@@ -48,7 +53,7 @@ public class Calculation {
 	
 	public void start(){
 		
-		int base_period = 500;
+		int base_period = 500; //at load calculation takes 500ms.  Take up to 500ms longer depending on load.
 		
 		timer.scheduleAtFixedRate(calc, 0, base_period + (base_period*(load/100)));
 		
