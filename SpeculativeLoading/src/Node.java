@@ -108,7 +108,9 @@ public class Node {
 					// parse arguments (also use "node" from above)
 					int taskId = (params.containsKey("task"))
 							? Integer.parseInt(params.get("task"))
-							: currTaskId++;
+							: currTaskId;
+					// ensure that future tasks won't use the same ID
+					currTaskId = (1 + taskId);
 					assert(targetNode >= 0);
 					assert(targetNode < servers.size());
 					CommandMessage cmdMsg = new CommandMessage(taskId, myId, "start", targetNode);
@@ -137,7 +139,7 @@ public class Node {
 			print("sending initial messages...");
 			for (Message initMsg : initialMessageList) {
 				print("sending " + initMsg.toString() + "...");
-				sendMsgTo(initMsg.destId, initMsg);
+				sendMsgTo(initMsg.destId(), initMsg);
 			}
 		}
 		
@@ -171,7 +173,7 @@ public class Node {
 				
 				if (msg instanceof CommandMessage) {
 					CommandMessage cmdMsg = (CommandMessage)msg;
-					if (cmdMsg.command.equals("start")) {
+					if (cmdMsg.command().equals("start")) {
 						sent_start_commands.add(cmdMsg);
 					}
 				}
@@ -196,16 +198,16 @@ public class Node {
 			
 			String retMsg="";
 			
-			if (msg.command.equals("start")){
+			if (msg.command().equals("start")){
 				if (calcs.size() < max_calcs){
 					startCalcFromMessage(msg);
 				}
 				else
 					waiting_calcs.add(msg); //don't determine load until running
 			}
-			else if (msg.command.equals("abort")){
+			else if (msg.command().equals("abort")){
 				for (int i=0; i<calcs.size(); i++){
-					if (calcs.get(i).taskId == msg.taskId){
+					if (calcs.get(i).taskId == msg.taskId()){
 						calcs.get(i).abort();
 					}
 				}
@@ -217,7 +219,7 @@ public class Node {
 
 	static void startCalcFromMessage(CommandMessage msg){
 		
-		calcs.add(new Calculation(msg.taskId, msg.senderId, myId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
+		calcs.add(new Calculation(msg.taskId(), msg.senderId(), myId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
 		
 	}
 	
