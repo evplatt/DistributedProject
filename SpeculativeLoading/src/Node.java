@@ -9,7 +9,6 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -24,13 +23,16 @@ public class Node {
 	static int myId;
 	static ArrayList<Calculation> calcs;
 	static ArrayList<CommandMessage> waiting_calcs;	
-	static ArrayList<CommandMessage> sent_start_commands;
+	static ArrayList<CalcMonitor> monitored_calcs;
 	static int currTaskId = 0;
 	static Timer timer;
 	
 	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
 	static final int num_starts = 3; //Set to number of servers that should be sent a start message for a certain calculation
-
+	static final int query_latency = 2; //Set to number of status checks where no update has been seen before a query command is sent
+	static final int lag_abort_threshold = 40; //A node will be aborted if it's calculation status exceeds this threshold relative to the highest status for that calculation task
+	static final int winner_abort_threshold = 75; //If a calculation exceeds this percentage of completion, the other nodes performing that calculation task will be aborted
+	
 	// Print line to standard output with ID information.
 	// (Helps to sort out multiple node messages.)
 	public static void print(String s) {
@@ -45,7 +47,7 @@ public class Node {
 		
 		calcs = new ArrayList<Calculation>();
 		waiting_calcs = new ArrayList<CommandMessage>();
-		sent_start_commands = new ArrayList<CommandMessage>();
+		monitored_calcs = new ArrayList<CalcMonitor>();
 		
 		Scanner sc = new Scanner(System.in);
 		myId = sc.nextInt()-1;  //let's 0-index in code
@@ -64,7 +66,7 @@ public class Node {
 					continue;
 				}
 				try{
-					peer = new ServerRecord(InetAddress.getByName(tokens[0]), Integer.parseInt(tokens[1]));
+					peer = new ServerRecord(servers.size(), InetAddress.getByName(tokens[0]), Integer.parseInt(tokens[1]));
 				} catch(UnknownHostException e){
 					System.out.println("Unknown host.  Re-enter server"+(i+1));
 					continue;
@@ -171,13 +173,6 @@ public class Node {
 				tcpOut.println(msg.serialize());
 				tcpOut.flush();
 				
-				if (msg instanceof CommandMessage) {
-					CommandMessage cmdMsg = (CommandMessage)msg;
-					if (cmdMsg.command().equals("start")) {
-						sent_start_commands.add(cmdMsg);
-					}
-				}
-				
 				socket.close();
 				ok = true;
 			}
@@ -212,54 +207,63 @@ public class Node {
 					}
 				}
 			}
-			
+			else if (msg.command().equals("query")){
+				for (int i=0; i<calcs.size(); i++){
+					if (calcs.get(i).taskId == msg.taskId()){
+						calcs.get(i).sendStatus();
+					}
+				}				
+			}
 			return retMsg;
 
+	}
+	
+	static boolean handleStatusMessage(StatusMessage msg){
+		int i=0;
+		while (i<monitored_calcs.size()){
+			if (monitored_calcs.get(i).taskId() == msg.taskId()){
+				monitored_calcs.get(i).updateNodeStatus(msg.senderId(), msg.percentComplete());
+				return true;
+			}
+			i++;
+		}
+		
+		return false;
+		
 	}
 
 	static void startCalcFromMessage(CommandMessage msg){
 		
-		calcs.add(new Calculation(msg.taskId(), msg.senderId(), myId, (calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
+		calcs.add(new Calculation(msg.taskId(), myId, servers.get(msg.senderId()),(calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
 		
 	}
 	
 	static void sendStartCommand(){
 		
-		//send a start command to the next 3 servers
+		int newTaskId = currTaskId++;
+		
+		CalcMonitor monitor = new CalcMonitor(newTaskId);
+		
+		//send a start command to the next num_starts servers
 		int i = 0;
-		for (i=1; i<=3; i++){
+		for (i=1; i<=num_starts; i++){
 			
 			int serverid = (myId+i)%servers.size();
-			CommandMessage cmd = new CommandMessage(currTaskId++,myId,"start",serverid);
+			CommandMessage cmd = new CommandMessage(newTaskId,myId,"start",serverid);
 			
-			try{
-				InetSocketAddress sockaddr = new InetSocketAddress(servers.get(serverid).ip,servers.get(serverid).port);
-				Socket socket = new Socket();
-				socket.connect(sockaddr, 100); //100ms timeout
-				
-				PrintStream tcpOut = new PrintStream(socket.getOutputStream());	
-				
-				tcpOut.println(cmd.serialize());
-				tcpOut.flush();
-				
-				sent_start_commands.add(cmd);
-				
-				socket.close();
+			if (sendMsgTo(serverid,cmd)){ //add the node to the ones we're going to monitor for this taskId
+				CalcNodeStatus stat = new CalcNodeStatus(serverid);
+				monitor.nodes.add(stat);
 			}
-			catch (SocketTimeoutException e){
-				i = (i<(numServers-1) ? i+1 : 0); //loop servers
-				continue;
-			}
-			catch (SocketException e){
-				i = (i<(numServers-1) ? i+1 : 0); //loop servers
-				continue;
-			}
-			catch (IOException e){
-				System.out.println(e.getMessage());
-			}
-			
+				
 		}
 		
+	}
+	
+	static void sendAbortCommand(int destId, int taskId){
+		
+		CommandMessage cmd = new CommandMessage(taskId,myId,"abort",destId);
+		sendMsgTo(cmd.destId(),cmd);
 		
 	}
 	
@@ -319,14 +323,44 @@ public class Node {
 			}
 						
 			//monitor status of calculations commanded by this node
+			for (int i=0; i<monitored_calcs.size(); i++){
+				CalcMonitor mon = monitored_calcs.get(i);
+				int highestStatus = 0;
+				int winner=-1;
+				for (int j=0; j<mon.nodes.size(); j++){
+					
+					CalcNodeStatus status = mon.nodes.get(j); 
+					
+					//keep track of latency
+					if (status.stale){
+						status.latency++;	
+					}
+					//if not latent, check the status
+					else{
+						if (status.latest_status > highestStatus) highestStatus = status.latest_status;
+					}
+					
+					//if we've hit the latency threshold for querying, send a query
+					if (status.latency == query_latency){
+						CommandMessage cmd = new CommandMessage(mon.taskId(),myId,"query",status.nodeId);
+						sendMsgTo(cmd.destId(),cmd);
+					}
+					
+					//if this status is lagging past the lag_abort_threshold, abort it
+					if (status.latest_status < highestStatus - lag_abort_threshold) sendAbortCommand(status.nodeId,mon.taskId);
+				
+					//if we have a task near completion (at or above the winner abort_threshold)
+					if (status.latest_status >= winner_abort_threshold) winner = j;
+				}
 			
-			
+				//if we found a node above the winner_abort_threshold, abort the others
+				if (winner > -1)
+					for (int j=0; j<mon.nodes.size(); j++)
+						if (j!=winner) sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
+			}
 			
 		}
 	
 	}
-	
-	
-	
-	
+		
 }

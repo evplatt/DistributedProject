@@ -5,7 +5,6 @@ public class StatusMessage extends Message {
 		super(destId);
 	}
 
-	public int initiatorId() { return Integer.parseInt(data.get("initiatorId")); }
 	public int percentComplete() { return Integer.parseInt(data.get("percentComplete")); }
 	public int senderId() { return Integer.parseInt(data.get("senderId")); }
 	public int taskId() { return Integer.parseInt(data.get("taskId")); }
