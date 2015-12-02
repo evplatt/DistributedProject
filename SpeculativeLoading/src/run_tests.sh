@@ -72,7 +72,7 @@ run_test() {
     printf "${stdin_data}" | java Node &
     srv_ids[$i]=$!
   done
-  sleep 30 # arbitrary (increase to length of test)
+  sleep 90 # arbitrary (increase to length of test)
   kill_all
 }
 

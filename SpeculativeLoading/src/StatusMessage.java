@@ -5,9 +5,11 @@ public class StatusMessage extends Message {
 		super(packetdata);
 	}
 	
-	public StatusMessage(int destId, int percentComplete) {
+	public StatusMessage(int destId, int percentComplete, int taskId, int senderId) {
 		super(destId);
 		data.put("percentComplete", new Integer(percentComplete).toString());
+		data.put("taskId", new Integer(taskId).toString());
+		data.put("senderId", new Integer(senderId).toString());
 	}
 
 	public int percentComplete() { return Integer.parseInt(data.get("percentComplete")); }

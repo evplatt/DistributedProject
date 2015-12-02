@@ -53,8 +53,10 @@ public class CalcMonitor {
 	CalcNodeStatus getStatus(int id){
 	
 		int i=0;
-		while (i<nodes.size())
+		while (i<nodes.size()){
 			if (nodes.get(i).nodeId == id) return nodes.get(i);
+			i++;
+		}
 		
 		return null;
 		
