@@ -26,6 +26,7 @@ public class Node {
 	static ArrayList<CalcMonitor> monitored_calcs;
 	static int currTaskId = 0;
 	static Timer timer;
+	static int server_to_start;
 	
 	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
 	static final int num_starts = 3; //Set to number of servers that should be sent a start message for a certain calculation
@@ -132,6 +133,7 @@ public class Node {
 			sc.close();
 		}
 		
+		server_to_start = (myId+1) % servers.size();
 		timer = new Timer();
 		timer.scheduleAtFixedRate(watcher, 0, 1000); //maintain calculations every second
 
@@ -189,21 +191,26 @@ public class Node {
 		return ok;
 	}
 	
-	static String handleMessage(CommandMessage msg){
+	static String handleCommandMessage(CommandMessage msg){
 			
 			String retMsg="";
+			
+			System.out.println("Received message: "+msg.serialize());
 			
 			if (msg.command().equals("start")){
 				if (calcs.size() < max_calcs){
 					startCalcFromMessage(msg);
 				}
-				else
+				else{
+					System.out.println("Node "+myId+": Quing task "+msg.taskId()+" in response to start command from node "+msg.senderId()+" since max_calcs reached");
 					waiting_calcs.add(msg); //don't determine load until running
+				}
 			}
 			else if (msg.command().equals("abort")){
 				for (int i=0; i<calcs.size(); i++){
 					if (calcs.get(i).taskId == msg.taskId()){
 						calcs.get(i).abort();
+						System.out.println("Node "+myId+": Aborting calculation for task "+msg.taskId()+" in response to abort command from node "+msg.senderId());
 					}
 				}
 			}
@@ -211,6 +218,7 @@ public class Node {
 				for (int i=0; i<calcs.size(); i++){
 					if (calcs.get(i).taskId == msg.taskId()){
 						calcs.get(i).sendStatus();
+						System.out.println("Node "+myId+": Asking calculation for task "+msg.taskId()+" to send status to it's initiator in response to query command from node "+msg.senderId());
 					}
 				}				
 			}
@@ -223,6 +231,7 @@ public class Node {
 		while (i<monitored_calcs.size()){
 			if (monitored_calcs.get(i).taskId() == msg.taskId()){
 				monitored_calcs.get(i).updateNodeStatus(msg.senderId(), msg.percentComplete());
+				System.out.println("Node "+myId+": Status message received from node "+msg.senderId()+" ("+msg.percentComplete()+"%)");
 				return true;
 			}
 			i++;
@@ -234,11 +243,12 @@ public class Node {
 
 	static void startCalcFromMessage(CommandMessage msg){
 		
+		System.out.println("Node "+myId+": Starting calculation for task "+msg.taskId()+" in response to start command from node "+msg.senderId());
 		calcs.add(new Calculation(msg.taskId(), myId, servers.get(msg.senderId()),(calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
-		
+		calcs.get(calcs.size()-1).start();
 	}
 	
-	static void sendStartCommand(){
+	static void sendStartCommands(){
 		
 		int newTaskId = currTaskId++;
 		
@@ -246,15 +256,17 @@ public class Node {
 		
 		//send a start command to the next num_starts servers
 		int i = 0;
-		for (i=1; i<=num_starts; i++){
+		for (i=0; i<num_starts; i++){
 			
-			int serverid = (myId+i)%servers.size();
+			int serverid = (server_to_start++) % servers.size();
 			CommandMessage cmd = new CommandMessage(newTaskId,myId,"start",serverid);
 			
 			if (sendMsgTo(serverid,cmd)){ //add the node to the ones we're going to monitor for this taskId
 				CalcNodeStatus stat = new CalcNodeStatus(serverid);
 				monitor.nodes.add(stat);
 			}
+			
+			System.out.println("Node "+myId+": Sending start command to node "+serverid+" for task "+newTaskId);
 				
 		}
 		
@@ -281,13 +293,12 @@ public class Node {
 			
 			try {
 				Scanner tcpIn = new Scanner(socket.getInputStream());
-				PrintWriter tcpOut = new PrintWriter(socket.getOutputStream());
-				CommandMessage msg = new CommandMessage(tcpIn.nextLine());
+				String packetdata = tcpIn.nextLine();
+				if (packetdata.indexOf("command") > 0)
+					handleCommandMessage(new CommandMessage(packetdata));
+				else
+					handleStatusMessage(new StatusMessage(packetdata));
 				
-				String responseStr = handleMessage(msg);
-				tcpOut.println(responseStr);
-				tcpOut.flush();
-			
 				socket.close();
 				tcpIn.close();
 				
@@ -311,12 +322,14 @@ public class Node {
 					calcs.remove(i);
 				}
 				else if (calcs.get(i).isComplete()){
+					System.out.println("Node "+myId+": Calculation for task "+calcs.get(i).taskId+" has completed");
 					calcs.remove(i);
-					
+					sendStartCommands();
 				}
 				
 			}
 			
+			//if we have waiting calcs, see if we can start some
 			while (calcs.size() < max_calcs && waiting_calcs.size() > 0){
 				startCalcFromMessage(waiting_calcs.get(0));
 				waiting_calcs.remove(0);
@@ -344,10 +357,14 @@ public class Node {
 					if (status.latency == query_latency){
 						CommandMessage cmd = new CommandMessage(mon.taskId(),myId,"query",status.nodeId);
 						sendMsgTo(cmd.destId(),cmd);
+						System.out.println("Node "+myId+": Sending query command to node "+status.nodeId+" for task "+mon.taskId);
 					}
 					
 					//if this status is lagging past the lag_abort_threshold, abort it
-					if (status.latest_status < highestStatus - lag_abort_threshold) sendAbortCommand(status.nodeId,mon.taskId);
+					if (status.latest_status < highestStatus - lag_abort_threshold){
+						sendAbortCommand(status.nodeId,mon.taskId);
+						System.out.println("Node "+myId+": Sending abort command to node "+myId+" due to lag for task "+mon.taskId);
+					}
 				
 					//if we have a task near completion (at or above the winner abort_threshold)
 					if (status.latest_status >= winner_abort_threshold) winner = j;
@@ -356,7 +373,10 @@ public class Node {
 				//if we found a node above the winner_abort_threshold, abort the others
 				if (winner > -1)
 					for (int j=0; j<mon.nodes.size(); j++)
-						if (j!=winner) sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
+						if (j!=winner){
+							sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
+							System.out.println("Node "+myId+" sending abort command to node "+mon.nodes.get(j).nodeId+" in deference to winning node "+winner+" for task "+mon.taskId);
+						}
 			}
 			
 		}

@@ -14,7 +14,7 @@ public class Calculation {
 	boolean aborted = false;
 	static calculator calc; 
 	int load; //system load factor (0 to 100)
-	static final int status_increment = 5;
+	static final int status_increment = 10;
 	int taskId;
 	ServerRecord initiator;
 	
@@ -37,7 +37,9 @@ public class Calculation {
 			
 			if (percent_complete == 100) this.cancel();
 			
-			if (percent_complete % status_increment == 0) sendStatusMsg(initiator);
+			if (percent_complete % status_increment == 0 || percent_complete==100) sendStatusMsg(initiator);
+			
+			System.out.println("Node "+nodeId+" task "+taskId+": percent_complete="+percent_complete);
 			
 		}
 	
@@ -49,15 +51,8 @@ public class Calculation {
 		this.taskId = taskId;
 		this.load = load;
 		this.initiator = initiator;
-		
-	}
-	
-	public static void main(){
-		
 		timer = new Timer();
-				
 		percent_complete = 0;
-				
 	}
 	
 	public void start(){
@@ -90,7 +85,7 @@ public class Calculation {
 	
 	static boolean sendStatusMsg(ServerRecord dest) {
 		
-		Message msg = new StatusMessage(dest.id);
+		Message msg = new StatusMessage(dest.id, percent_complete);
 				
 		boolean ok = false; // initially...
 		{

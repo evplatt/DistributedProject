@@ -1,2 +1,2 @@
 # commands for node 0
-start task=123 node=5
+start task=0 node=5

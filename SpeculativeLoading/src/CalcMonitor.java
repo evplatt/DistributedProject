@@ -8,16 +8,22 @@ public class CalcMonitor {
 	int taskId;
 	
 	public CalcMonitor(int taskId){
+		
 		nodes = new ArrayList<CalcNodeStatus>();
 		this.taskId = taskId;
+		
 	}
 	
 	public void addNode(int nodeId){
+		
 		nodes.add(new CalcNodeStatus(nodeId));
+	
 	}
 	
 	public int taskId(){
+	
 		return taskId;
+	
 	}
 	
 	public void updateNodeStatus(int senderId, int percentComplete){
@@ -49,8 +55,9 @@ public class CalcMonitor {
 		int i=0;
 		while (i<nodes.size())
 			if (nodes.get(i).nodeId == id) return nodes.get(i);
-				
+		
 		return null;
 		
 	}
+	
 }

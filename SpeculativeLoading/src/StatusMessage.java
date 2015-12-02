@@ -1,8 +1,13 @@
 
 public class StatusMessage extends Message {
 
-	public StatusMessage(int destId) {
+	public StatusMessage(String packetdata){
+		super(packetdata);
+	}
+	
+	public StatusMessage(int destId, int percentComplete) {
 		super(destId);
+		data.put("percentComplete", new Integer(percentComplete).toString());
 	}
 
 	public int percentComplete() { return Integer.parseInt(data.get("percentComplete")); }
