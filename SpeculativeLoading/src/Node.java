@@ -36,6 +36,7 @@ public class Node {
 	static int calc_base_time=500; 							//Period (ms) for updating calculation status
 	static int calc_status_increment=5; 				//The amount to increase calculation status each calc_base_time
 	static int calc_status_report_interval=10;	//The interval for sending status updates to the originator (how often in %)
+	static boolean speculative=true;         //if disabled, abort messages will not be sent (non-speculative)
 		
 	// Print line to standard output with ID information.
 	// (Helps to sort out multiple node messages.)
@@ -179,13 +180,15 @@ public class Node {
 		
 		String[] tokens = command.split(" +");
 		
-		max_calcs 							= Integer.parseInt(tokens[1]);
-		num_starts 							= Integer.parseInt(tokens[2]);
-		query_latency 					= Integer.parseInt(tokens[3]);
-		lag_abort_threshold 		= Integer.parseInt(tokens[4]);
-		winner_abort_threshold 	= Integer.parseInt(tokens[5]);
-		calc_base_time 					= Integer.parseInt(tokens[6]);
-		calc_status_increment 	= Integer.parseInt(tokens[7]);
+		max_calcs 									= Integer.parseInt(tokens[1]);
+		num_starts 									= Integer.parseInt(tokens[2]);
+		query_latency 							= Integer.parseInt(tokens[3]);
+		lag_abort_threshold 				= Integer.parseInt(tokens[4]);
+		winner_abort_threshold 			= Integer.parseInt(tokens[5]);
+		calc_base_time 							= Integer.parseInt(tokens[6]);
+		calc_status_increment 			= Integer.parseInt(tokens[7]);
+		calc_status_report_interval = Integer.parseInt(tokens[8]);
+		speculative									= Boolean.parseBoolean(tokens[9]);
 		
 	}
 	
@@ -408,27 +411,31 @@ public class Node {
 						System.out.println("Node "+myId+": Sending query command to node "+status.nodeId+" for task "+mon.taskId);
 					}
 					
-					//if this status is lagging past the lag_abort_threshold, abort it
-					if (status.latest_status < highestStatus - lag_abort_threshold){
-						System.out.println("Node "+myId+": Sending abort command to node "+status.nodeId+" due to lag for task "+mon.taskId);
-						sendAbortCommand(status.nodeId,mon.taskId);
-						mon.nodes.remove(status);
-						j--;
-					}
-				
-					//if we have a task near completion (at or above the winner abort_threshold)
-					if (status.latest_status >= winner_abort_threshold) winner = status.nodeId;
-				}
-				
-					//if we found a node above the winner_abort_threshold, abort the others
-				if (winner > -1){
-					for (int j=0; j<mon.nodes.size(); j++)
-						if (mon.nodes.get(j).nodeId != winner){
-							System.out.println("Node "+myId+" sending abort command to node "+mon.nodes.get(j).nodeId+" in deference to winning node "+winner+" for task "+mon.taskId);
-							sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
-							mon.nodes.remove(j);
+					if (speculative){
+						//if this status is lagging past the lag_abort_threshold, abort it
+						if (status.latest_status < highestStatus - lag_abort_threshold){
+							System.out.println("Node "+myId+": Sending abort command to node "+status.nodeId+" due to lag for task "+mon.taskId);
+							sendAbortCommand(status.nodeId,mon.taskId);
+							mon.nodes.remove(status);
 							j--;
 						}
+
+						//if we have a task near completion (at or above the winner abort_threshold)
+						if (status.latest_status >= winner_abort_threshold) winner = status.nodeId;
+					}
+				}
+				
+				if (speculative){
+					//if we found a node above the winner_abort_threshold, abort the others
+					if (winner > -1){
+						for (int j=0; j<mon.nodes.size(); j++)
+							if (mon.nodes.get(j).nodeId != winner){
+								System.out.println("Node "+myId+" sending abort command to node "+mon.nodes.get(j).nodeId+" in deference to winning node "+winner+" for task "+mon.taskId);
+								sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
+								mon.nodes.remove(j);
+								j--;
+							}
+					}
 				}
 				
 				if (mon.nodes.size() == 0){

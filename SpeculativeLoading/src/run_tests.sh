@@ -66,9 +66,13 @@ run_test() {
     # if any parameters are given, include them
     setup_file="${test_name}/setup-${i}.txt"
     if [ -r "$setup_file" ] ; then
-      stdin_data="${stdin_data}`cat $setup_file`";
+      stdin_data="${stdin_data}`cat $setup_file`\n";
     fi
-    printf "sending '${stdin_data}' to new server...\n"
+    params_file="${test_name}/params.txt"
+    if [ -r "$params_file" ] ; then
+      stdin_data="${stdin_data}`cat $params_file`";
+    fi
+    #printf "sending '${stdin_data}' to new server...\n"
     printf "${stdin_data}" | java Node &
     srv_ids[$i]=$!
   done
