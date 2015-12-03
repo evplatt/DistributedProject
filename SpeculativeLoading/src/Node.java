@@ -258,7 +258,7 @@ public class Node {
 		int i=0;
 		while (i<monitored_calcs.size()){
 			if (monitored_calcs.get(i).taskId() == msg.taskId()){
-				System.out.println("Node "+myId+": Status message received from node "+msg.senderId()+" ("+msg.percentComplete()+"%)");
+				System.out.println("Node "+myId+": Status message received from node "+msg.senderId()+" for task "+msg.taskId()+" ("+msg.percentComplete()+"%)");
 				monitored_calcs.get(i).updateNodeStatus(msg.senderId(), msg.percentComplete());
 				return true;
 			}

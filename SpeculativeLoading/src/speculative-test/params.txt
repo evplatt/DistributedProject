@@ -1,0 +1,2 @@
+#      max_calcs num_starts query_latency lag_abort_threshold winner_abort_threshold calc_base_time calc_status_increment calc_status_report_interval speculative
+params 10        3          2             30                  75                     500            5                     10                          true

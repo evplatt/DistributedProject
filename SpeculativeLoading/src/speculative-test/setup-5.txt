@@ -1,0 +1,4 @@
+# commands for node 0
+start task=1 node=1
+start task=1 node=2
+start task=1 node=3
