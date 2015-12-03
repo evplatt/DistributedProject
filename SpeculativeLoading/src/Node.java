@@ -36,7 +36,8 @@ public class Node {
 	static int calc_base_time=500; 							//Period (ms) for updating calculation status
 	static int calc_status_increment=5; 				//The amount to increase calculation status each calc_base_time
 	static int calc_status_report_interval=10;	//The interval for sending status updates to the originator (how often in %)
-	static boolean speculative=true;         //if disabled, abort messages will not be sent (non-speculative)
+	static boolean speculative=true;         		//if disabled, abort messages will not be sent (non-speculative)
+	static boolean verbose=true;								//if false, only prints task completion messages
 		
 	// Print line to standard output with ID information.
 	// (Helps to sort out multiple node messages.)
@@ -145,20 +146,9 @@ public class Node {
 		timer = new Timer();
 		timer.scheduleAtFixedRate(watcher, 0, calc_base_time); //maintain calculations at the base calculation rate
 
-		if (!initialMessageList.isEmpty()) {
-			print("waiting for node servers...");
-			sleep(2); // give servers a chance to start
-			print("sending initial messages...");
-			for (Message initMsg : initialMessageList) {
-				print("sending " + initMsg.toString() + "...");
-				sendMsgTo(initMsg.destId(), initMsg);
-				if (initMsg instanceof CommandMessage){
-					CommandMessage cmd = (CommandMessage)initMsg;
-					if (cmd.command().equals("start")){
-						addCalcMonitor(cmd);
-					}
-				}
-			}
+		if (!initialMessageList.isEmpty()){
+			initialCommandsThread cmdThread = new initialCommandsThread(initialMessageList);
+			cmdThread.start();
 		}
 		
 		System.out.println("Starting TCP server on port "+servers.get(myId).port);
@@ -189,6 +179,7 @@ public class Node {
 		calc_status_increment 			= Integer.parseInt(tokens[7]);
 		calc_status_report_interval = Integer.parseInt(tokens[8]);
 		speculative									= Boolean.parseBoolean(tokens[9]);
+		verbose											= Boolean.parseBoolean(tokens[10]);
 		
 	}
 	
@@ -230,7 +221,7 @@ public class Node {
 					startCalcFromMessage(msg);
 				}
 				else{
-					System.out.println("Node "+myId+": Queing task "+msg.taskId()+" in response to start command from node "+msg.senderId()+" since max_calcs reached");
+					if (verbose) System.out.println("Node "+myId+": Queing task "+msg.taskId()+" in response to start command from node "+msg.senderId()+" since max_calcs reached");
 					waiting_calcs.add(msg); //don't determine load until running
 				}
 			}
@@ -238,7 +229,7 @@ public class Node {
 				for (int i=0; i<calcs.size(); i++){
 					if (calcs.get(i).taskId == msg.taskId()){
 						calcs.get(i).abort();
-						System.out.println("Node "+myId+": Aborting calculation for task "+msg.taskId()+" in response to abort command from node "+msg.senderId());
+						if (verbose) System.out.println("Node "+myId+": Aborting calculation for task "+msg.taskId()+" in response to abort command from node "+msg.senderId());
 					}
 				}
 			}
@@ -246,7 +237,7 @@ public class Node {
 				for (int i=0; i<calcs.size(); i++){
 					if (calcs.get(i).taskId == msg.taskId()){
 						calcs.get(i).sendStatus();
-						System.out.println("Node "+myId+": Asking calculation for task "+msg.taskId()+" to send status to its initiator in response to query command from node "+msg.senderId());
+						if (verbose) System.out.println("Node "+myId+": Asking calculation for task "+msg.taskId()+" to send status to its initiator in response to query command from node "+msg.senderId());
 					}
 				}				
 			}
@@ -258,7 +249,7 @@ public class Node {
 		int i=0;
 		while (i<monitored_calcs.size()){
 			if (monitored_calcs.get(i).taskId() == msg.taskId()){
-				System.out.println("Node "+myId+": Status message received from node "+msg.senderId()+" for task "+msg.taskId()+" ("+msg.percentComplete()+"%)");
+				if (verbose) System.out.println("Node "+myId+": Status message received from node "+msg.senderId()+" for task "+msg.taskId()+" ("+msg.percentComplete()+"%)");
 				monitored_calcs.get(i).updateNodeStatus(msg.senderId(), msg.percentComplete());
 				return true;
 			}
@@ -271,7 +262,7 @@ public class Node {
 
 	static void startCalcFromMessage(CommandMessage msg){
 		
-		System.out.print("Node "+myId+": Starting calculation for task "+msg.taskId()+" in response to start command from node "+msg.senderId()+"\n");
+		if (verbose) System.out.print("Node "+myId+": Starting calculation for task "+msg.taskId()+" in response to start command from node "+msg.senderId()+"\n");
 		calcs.add(new Calculation(msg.taskId(), myId, servers.get(msg.senderId()),(calcs.size() * (100 / max_calcs)), calc_base_time, calc_status_increment, calc_status_report_interval)); //use a portion of node load for each existing calculation
 		
 	}
@@ -291,7 +282,7 @@ public class Node {
 				addCalcMonitor(cmd);
 			}
 			
-			System.out.println("Node "+myId+": Sending start command to node "+serverid+" for task "+newTaskId);
+			if (verbose) System.out.println("Node "+myId+": Sending start command to node "+serverid+" for task "+newTaskId);
 				
 		}
 		
@@ -317,6 +308,37 @@ public class Node {
 		CalcMonitor monitor = new CalcMonitor(cmd.taskId());
 		monitor.nodes.add(new CalcNodeStatus(cmd.destId()));
 		monitored_calcs.add(monitor);
+		
+	}
+	
+	static class initialCommandsThread extends Thread{
+		
+		ArrayList<Message> initialMessageList;
+		
+		public initialCommandsThread(ArrayList<Message> initialMessageList){
+			this.initialMessageList = initialMessageList;
+		}
+				
+		public void run(){
+			try{
+				print("waiting for node servers...");
+				sleep(2000); // give servers a chance to start
+				print("sending initial messages...");
+				for (Message initMsg : initialMessageList) {
+					print("sending " + initMsg.toString() + "...");
+					sendMsgTo(initMsg.destId(), initMsg);
+					if (initMsg instanceof CommandMessage){
+						CommandMessage cmd = (CommandMessage)initMsg;
+						if (cmd.command().equals("start")){
+							addCalcMonitor(cmd);
+						}
+					}
+				}
+			}
+			catch (InterruptedException e){
+				System.out.println(e.getStackTrace());
+			}
+		}
 		
 	}
 	
@@ -407,13 +429,13 @@ public class Node {
 					if (status.latency == query_latency){
 						CommandMessage cmd = new CommandMessage(mon.taskId(),myId,"query",status.nodeId);
 						sendMsgTo(cmd.destId(),cmd);
-						System.out.println("Node "+myId+": Sending query command to node "+status.nodeId+" for task "+mon.taskId);
+						if (verbose) System.out.println("Node "+myId+": Sending query command to node "+status.nodeId+" for task "+mon.taskId);
 					}
 					
 					if (speculative){
 						//if this status is lagging past the lag_abort_threshold, abort it
 						if (status.latest_status < highestStatus - lag_abort_threshold){
-							System.out.println("Node "+myId+": Sending abort command to node "+status.nodeId+" due to lag for task "+mon.taskId);
+							if (verbose) System.out.println("Node "+myId+": Sending abort command to node "+status.nodeId+" due to lag for task "+mon.taskId);
 							sendAbortCommand(status.nodeId,mon.taskId);
 							mon.nodes.remove(status);
 							j--;
@@ -430,7 +452,7 @@ public class Node {
 					if (winner > -1){
 						for (int j=0; j<mon.nodes.size(); j++)
 							if (mon.nodes.get(j).nodeId != winner){
-								System.out.println("Node "+myId+" sending abort command to node "+mon.nodes.get(j).nodeId+" in deference to winning node "+winner+" for task "+mon.taskId);
+								if (verbose) System.out.println("Node "+myId+" sending abort command to node "+mon.nodes.get(j).nodeId+" in deference to winning node "+winner+" for task "+mon.taskId);
 								sendAbortCommand(mon.nodes.get(j).nodeId,mon.taskId);
 								mon.nodes.remove(j);
 								j--;
