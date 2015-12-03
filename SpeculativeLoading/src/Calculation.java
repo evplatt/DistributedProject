@@ -15,9 +15,13 @@ public class Calculation {
 	boolean aborted = false;
 	static calculator calc; 
 	int load; //system load factor (0 to 100)
-	static final int status_increment = 10;
+	
 	int taskId;
 	ServerRecord initiator;
+	
+	static int base_calc_time;
+	static int status_increment = 10;
+	static int status_report_interval;
 	
 	static class calculator extends TimerTask {
 		
@@ -56,6 +60,12 @@ public class Calculation {
 		timer = new Timer();
 		percent_complete = 0;
 		start();
+	}
+	
+	public void setParams(int base_time, int status_increment, int status_report_interval){
+		this.base_calc_time = base_calc_time;
+		this.status_increment = status_increment;
+		this.status_report_interval = status_report_interval;
 	}
 	
 	public void start(){

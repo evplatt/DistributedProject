@@ -27,12 +27,16 @@ public class Node {
 	static Timer timer;
 	static int server_to_start;
 	
-	static final int max_calcs = 10; //Set to maximum simultaneous calculation limit for each node
-	static final int num_starts = 3; //Set to number of servers that should be sent a start message for a certain calculation
-	static final int query_latency = 2; //Set to number of status checks where no update has been seen before a query command is sent
-	static final int lag_abort_threshold = 30; //A node will be aborted if it's calculation status exceeds this threshold relative to the highest status for that calculation task
-	static final int winner_abort_threshold = 75; //If a calculation exceeds this percentage of completion, the other nodes performing that calculation task will be aborted
-	
+	//Defaults - these will be set by command line, in this order
+	static int max_calcs = 10;									//Set to maximum simultaneous calculation limit for each node
+	static int num_starts = 3;									//Set to number of servers that should be sent a start message for a certain calculation
+	static int query_latency = 2;								//Set to number of status checks where no update has been seen before a query command is sent
+	static int lag_abort_threshold = 30;				//A node will be aborted if it's calculation status exceeds this threshold relative to the highest status for that calculation task
+	static int winner_abort_threshold = 75; 		//If a calculation exceeds this percentage of completion, the other nodes performing that calculation task will be aborted
+	static int calc_base_time=500; 							//Period (ms) for updating calculation status
+	static int calc_status_increment=5; 				//The amount to increase calculation status each calc_base_time
+	static int calc_status_report_interval=10;	//The interval for sending status updates to the originator (how often in %)
+		
 	// Print line to standard output with ID information.
 	// (Helps to sort out multiple node messages.)
 	public static void print(String s) {
@@ -51,9 +55,9 @@ public class Node {
 		
 		Scanner sc = new Scanner(System.in);
 		myId = sc.nextInt()-1;  //let's 0-index in code
-		//print("set ID " + myId);
 		numServers = sc.nextInt();
-		sc.nextLine();
+		sc.nextLine();		
+		
 		calcwatcher watcher = new calcwatcher();
 		
 		for (int i = 0; i < numServers; i++) {
@@ -79,9 +83,13 @@ public class Node {
 		try {
 			while (true) {
 				String command = sc.nextLine();
-				String[] tokens = command.split(" ");
+				String[] tokens = command.split(" +");
 				if ((0 == tokens.length) || (tokens[0].charAt(0) == '#')) {
 					// skip blanks and "#" comments
+					continue;
+				}
+				else if (tokens[0].equals("params")){
+					setParams(command);
 					continue;
 				}
 				//String cmdName = tokens[0];
@@ -167,6 +175,20 @@ public class Node {
 		}
 	}
 
+	static void setParams(String command){
+		
+		String[] tokens = command.split(" +");
+		
+		max_calcs 							= Integer.parseInt(tokens[1]);
+		num_starts 							= Integer.parseInt(tokens[2]);
+		query_latency 					= Integer.parseInt(tokens[3]);
+		lag_abort_threshold 		= Integer.parseInt(tokens[4]);
+		winner_abort_threshold 	= Integer.parseInt(tokens[5]);
+		calc_base_time 					= Integer.parseInt(tokens[6]);
+		calc_status_increment 	= Integer.parseInt(tokens[7]);
+		
+	}
+	
 	static boolean sendMsgTo(int serverId, Message msg) {
 		boolean ok = false; // initially...
 		{

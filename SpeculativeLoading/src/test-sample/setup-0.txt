@@ -1,2 +1,4 @@
 # commands for node 0
 start task=0 node=5
+#      max_calcs num_starts query_latency lag_abort_threshold winner_abort_threshold calc_base_time calc_status_increment calc_status_report_interval
+params 10        3          2             30                  75                     500            5                     10
