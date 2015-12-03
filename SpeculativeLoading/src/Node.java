@@ -118,7 +118,7 @@ public class Node {
 				if (tokens[0].equals("start")) {
 					// parse arguments (also use "node" from above)
 					int taskId = (params.containsKey("task"))
-							? Integer.parseInt(params.get("task"))
+							? Integer.parseInt(myId+params.get("task"))
 							: currTaskId;
 					// ensure that future tasks won't use the same ID
 					currTaskId = (1 + taskId);
@@ -143,7 +143,7 @@ public class Node {
 		
 		server_to_start = (myId+1) % servers.size();
 		timer = new Timer();
-		timer.scheduleAtFixedRate(watcher, 0, 1000); //maintain calculations every second
+		timer.scheduleAtFixedRate(watcher, 0, calc_base_time); //maintain calculations at the base calculation rate
 
 		if (!initialMessageList.isEmpty()) {
 			print("waiting for node servers...");
@@ -272,14 +272,13 @@ public class Node {
 	static void startCalcFromMessage(CommandMessage msg){
 		
 		System.out.print("Node "+myId+": Starting calculation for task "+msg.taskId()+" in response to start command from node "+msg.senderId()+"\n");
-		calcs.add(new Calculation(msg.taskId(), myId, servers.get(msg.senderId()),(calcs.size() * (100 / max_calcs)))); //use a portion of node load for each existing calculation
-		currTaskId=msg.taskId();
+		calcs.add(new Calculation(msg.taskId(), myId, servers.get(msg.senderId()),(calcs.size() * (100 / max_calcs)), calc_base_time, calc_status_increment, calc_status_report_interval)); //use a portion of node load for each existing calculation
 		
 	}
 	
 	static void sendStartCommands(){
 		
-		int newTaskId = ++currTaskId;
+		int newTaskId = Integer.parseInt(Integer.toString(myId)+Integer.toString(++currTaskId));
 		
 		//send a start command to the next num_starts servers
 		int i = 0;
@@ -366,7 +365,7 @@ public class Node {
 					i--;
 				}
 				else if (calcs.get(i).isComplete()){
-					System.out.println("Node "+myId+": Calculation for task "+calcs.get(i).taskId+" has completed");
+					System.out.println("Node "+myId+": Calculation for task "+calcs.get(i).taskId+" initiated by node "+calcs.get(i).initiator.id+" has completed");
 					calcs.remove(i);
 					i--;
 					sendStartCommands();
@@ -418,6 +417,7 @@ public class Node {
 							sendAbortCommand(status.nodeId,mon.taskId);
 							mon.nodes.remove(status);
 							j--;
+							continue;
 						}
 
 						//if we have a task near completion (at or above the winner abort_threshold)

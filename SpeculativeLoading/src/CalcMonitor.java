@@ -29,6 +29,7 @@ public class CalcMonitor {
 	public void updateNodeStatus(int senderId, int percentComplete){
 		
 		CalcNodeStatus status = getStatus(senderId);
+		if(status==null) return;
 		
 		status.latest_status = percentComplete;
 		status.stale = false;

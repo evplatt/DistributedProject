@@ -1,0 +1,1805 @@
+Running test speculative-test
+Starting TCP server on port 8387
+Starting TCP server on port 8388
+Starting TCP server on port 8394
+Starting TCP server on port 8389<0>: received command: start task=0 node=5
+
+
+<0>: received command: start task=0 node=6
+
+<0>: received command: start task=0 node=7
+
+Starting TCP server on port 8393
+Starting TCP server on port 8386
+<0>: waiting for node servers...
+
+Starting TCP server on port 8391
+<5>: received command: start task=1 node=1
+
+<5>: received command: start task=1 node=2
+
+<5>: received command: start task=1 node=3
+
+<5>: waiting for node servers...
+
+Starting TCP server on port 8392
+<0>: sending initial messages...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=5...
+
+<5>: sending initial messages...
+
+<5>: sending taskId=51,command=start,senderId=5,destId=1...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=6...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=7...
+
+Starting TCP server on port 8385
+Node 6: Starting calculation for task 0 in response to start command from node 0
+Node 7: Starting calculation for task 0 in response to start command from node 0
+<5>: sending taskId=51,command=start,senderId=5,destId=2...
+
+<5>: sending taskId=51,command=start,senderId=5,destId=3...
+
+Starting TCP server on port 8390
+Node 2: Starting calculation for task 51 in response to start command from node 5
+Node 3: Starting calculation for task 51 in response to start command from node 5
+Node 1: Starting calculation for task 51 in response to start command from node 5
+Node 0: Status message received from node 6 for task 0 (5%)
+Node 0: Status message received from node 7 for task 0 (5%)
+Node 5: Status message received from node 1 for task 51 (5%)
+Node 5: Status message received from node 2 for task 51 (5%)
+Node 5: Status message received from node 3 for task 51 (5%)
+Node 0: Sending query command to node 5 for task 0
+Node 0: Status message received from node 6 for task 0 (10%)
+Node 5: Status message received from node 1 for task 51 (10%)
+Node 0: Status message received from node 7 for task 0 (10%)
+Node 5: Status message received from node 3 for task 51 (10%)
+Node 5: Status message received from node 2 for task 51 (10%)
+Node 0: Status message received from node 6 for task 0 (15%)
+Node 5: Status message received from node 1 for task 51 (15%)
+Node 0: Status message received from node 7 for task 0 (15%)
+Node 5: Status message received from node 3 for task 51 (15%)
+Node 5: Status message received from node 2 for task 51 (15%)
+Node 5: Status message received from node 1 for task 51 (20%)
+Node 0: Status message received from node 6 for task 0 (20%)
+Node 5: Status message received from node 1 for task 51 (25%)
+Node 0: Status message received from node 7 for task 0 (20%)
+Node 0: Status message received from node 6 for task 0 (25%)
+Node 5: Status message received from node 3 for task 51 (20%)
+Node 5: Status message received from node 2 for task 51 (20%)
+Node 5: Status message received from node 1 for task 51 (30%)
+Node 0: Status message received from node 6 for task 0 (30%)
+Node 0: Status message received from node 7 for task 0 (25%)
+Node 5: Status message received from node 3 for task 51 (25%)
+Node 5: Status message received from node 1 for task 51 (35%)
+Node 5: Status message received from node 2 for task 51 (25%)
+Node 0: Status message received from node 6 for task 0 (35%)
+Node 0: Status message received from node 7 for task 0 (30%)
+Node 5: Status message received from node 1 for task 51 (40%)
+Node 5: Status message received from node 3 for task 51 (30%)
+Node 0: Status message received from node 6 for task 0 (40%)
+Node 5: Status message received from node 2 for task 51 (30%)
+Node 5: Status message received from node 1 for task 51 (45%)
+Node 0: Status message received from node 7 for task 0 (35%)
+Node 0: Status message received from node 6 for task 0 (45%)
+Node 5: Status message received from node 1 for task 51 (50%)
+Node 5: Status message received from node 3 for task 51 (35%)
+Node 5: Status message received from node 2 for task 51 (35%)
+Node 5 sending abort command to node 2 in deference to winning node 1 for task 51
+Node 5 sending abort command to node 3 in deference to winning node 1 for task 51
+Node 2: Aborting calculation for task 51 in response to abort command from node 5
+Node 3: Aborting calculation for task 51 in response to abort command from node 5
+Node 0: Status message received from node 6 for task 0 (50%)
+Node 0: Status message received from node 7 for task 0 (40%)
+Node 5: Status message received from node 1 for task 51 (55%)
+Node 0 sending abort command to node 5 in deference to winning node 6 for task 0
+Node 0 sending abort command to node 7 in deference to winning node 6 for task 0
+Node 7: Aborting calculation for task 0 in response to abort command from node 0
+Node 0: Status message received from node 6 for task 0 (55%)
+Node 5: Status message received from node 1 for task 51 (60%)
+Node 5: Status message received from node 1 for task 51 (65%)
+Node 0: Status message received from node 6 for task 0 (60%)
+Node 5: Status message received from node 1 for task 51 (70%)
+Node 0: Status message received from node 6 for task 0 (65%)
+Node 5: Status message received from node 1 for task 51 (75%)
+Node 0: Status message received from node 6 for task 0 (70%)
+Node 5: Status message received from node 1 for task 51 (80%)
+Node 0: Status message received from node 6 for task 0 (75%)
+Node 5: Status message received from node 1 for task 51 (85%)
+Node 0: Status message received from node 6 for task 0 (80%)
+Node 5: Status message received from node 1 for task 51 (90%)
+Node 0: Status message received from node 6 for task 0 (85%)
+Node 5: Status message received from node 1 for task 51 (95%)
+Node 0: Status message received from node 6 for task 0 (90%)
+Node 5: Status message received from node 1 for task 51 (100%)
+Node 1: Calculation for task 51 initiated by node 5 has completed
+Node 2: Starting calculation for task 11 in response to start command from node 1
+Node 1: Sending start command to node 2 for task 11
+Node 1: Sending start command to node 3 for task 11
+Node 1: Status message received from node 2 for task 11 (5%)
+Node 3: Starting calculation for task 11 in response to start command from node 1
+Node 1: Sending start command to node 4 for task 11
+Node 1: Status message received from node 3 for task 11 (5%)
+Node 4: Starting calculation for task 11 in response to start command from node 1
+Node 1: Status message received from node 4 for task 11 (5%)
+Node 0: Status message received from node 6 for task 0 (95%)
+Node 1: Status message received from node 3 for task 11 (10%)
+Node 1: Status message received from node 2 for task 11 (10%)
+Node 6: Calculation for task 0 initiated by node 0 has completed
+Node 0: Status message received from node 6 for task 0 (100%)
+Node 7: Starting calculation for task 61 in response to start command from node 6
+Node 6: Sending start command to node 7 for task 61
+Node 6: Sending start command to node 8 for task 61
+Node 6: Sending start command to node 9 for task 61
+Node 1: Status message received from node 4 for task 11 (10%)
+Node 9: Starting calculation for task 61 in response to start command from node 6
+Node 6: Status message received from node 7 for task 61 (5%)
+Node 8: Starting calculation for task 61 in response to start command from node 6
+Node 6: Status message received from node 9 for task 61 (5%)
+Node 6: Status message received from node 8 for task 61 (5%)
+Node 1: Status message received from node 3 for task 11 (15%)
+Node 6: Status message received from node 7 for task 61 (10%)
+Node 1: Status message received from node 2 for task 11 (15%)
+Node 1: Status message received from node 4 for task 11 (15%)
+Node 6: Status message received from node 9 for task 61 (10%)
+Node 6: Status message received from node 8 for task 61 (10%)
+Node 1: Status message received from node 3 for task 11 (20%)
+Node 6: Status message received from node 7 for task 61 (15%)
+Node 1: Status message received from node 2 for task 11 (20%)
+Node 6: Status message received from node 8 for task 61 (15%)Node 1: Status message received from node 4 for task 11 (20%)
+
+Node 6: Status message received from node 9 for task 61 (15%)
+Node 1: Status message received from node 3 for task 11 (25%)
+Node 6: Status message received from node 7 for task 61 (20%)
+Node 1: Status message received from node 2 for task 11 (25%)
+Node 6: Status message received from node 8 for task 61 (20%)
+Node 1: Status message received from node 4 for task 11 (25%)
+Node 1: Status message received from node 3 for task 11 (30%)
+Node 6: Status message received from node 9 for task 61 (20%)
+Node 6: Status message received from node 7 for task 61 (25%)
+Node 1: Status message received from node 2 for task 11 (30%)
+Node 6: Status message received from node 8 for task 61 (25%)
+Node 1: Status message received from node 3 for task 11 (35%)
+Node 1: Status message received from node 4 for task 11 (30%)
+Node 6: Status message received from node 9 for task 61 (25%)
+Node 6: Status message received from node 7 for task 61 (30%)
+Node 1: Status message received from node 3 for task 11 (40%)
+Node 6: Status message received from node 8 for task 61 (30%)
+Node 1: Status message received from node 2 for task 11 (35%)
+Node 6: Status message received from node 7 for task 61 (35%)
+Node 1: Status message received from node 4 for task 11 (35%)
+Node 6: Status message received from node 9 for task 61 (30%)
+Node 1: Status message received from node 3 for task 11 (45%)
+Node 6: Status message received from node 8 for task 61 (35%)
+Node 1: Status message received from node 2 for task 11 (40%)
+Node 6: Status message received from node 7 for task 61 (40%)
+Node 1: Status message received from node 4 for task 11 (40%)
+Node 6: Status message received from node 9 for task 61 (35%)
+Node 1: Status message received from node 3 for task 11 (50%)
+Node 1 sending abort command to node 2 in deference to winning node 3 for task 11
+Node 6: Status message received from node 8 for task 61 (40%)
+Node 1 sending abort command to node 4 in deference to winning node 3 for task 11
+Node 2: Aborting calculation for task 11 in response to abort command from node 1
+Node 4: Aborting calculation for task 11 in response to abort command from node 1
+Node 6: Status message received from node 7 for task 61 (45%)
+Node 6: Status message received from node 9 for task 61 (40%)
+Node 1: Status message received from node 3 for task 11 (55%)
+Node 6: Status message received from node 7 for task 61 (50%)
+Node 6: Status message received from node 8 for task 61 (45%)
+Node 6 sending abort command to node 8 in deference to winning node 7 for task 61
+Node 6 sending abort command to node 9 in deference to winning node 7 for task 61
+Node 8: Aborting calculation for task 61 in response to abort command from node 6
+Node 9: Aborting calculation for task 61 in response to abort command from node 6
+Node 1: Status message received from node 3 for task 11 (60%)
+Node 6: Status message received from node 7 for task 61 (55%)
+Node 1: Status message received from node 3 for task 11 (65%)
+Node 6: Status message received from node 7 for task 61 (60%)
+Node 1: Status message received from node 3 for task 11 (70%)
+Node 6: Status message received from node 7 for task 61 (65%)
+Node 1: Status message received from node 3 for task 11 (75%)
+Node 6: Status message received from node 7 for task 61 (70%)
+Node 1: Status message received from node 3 for task 11 (80%)
+Node 6: Status message received from node 7 for task 61 (75%)
+Node 1: Status message received from node 3 for task 11 (85%)
+Node 6: Status message received from node 7 for task 61 (80%)
+Node 1: Status message received from node 3 for task 11 (90%)
+Node 6: Status message received from node 7 for task 61 (85%)
+Node 1: Status message received from node 3 for task 11 (95%)
+Node 6: Status message received from node 7 for task 61 (90%)
+Node 1: Status message received from node 3 for task 11 (100%)
+Node 3: Calculation for task 11 initiated by node 1 has completed
+Node 4: Starting calculation for task 31 in response to start command from node 3
+Node 3: Sending start command to node 4 for task 31
+Node 3: Sending start command to node 5 for task 31
+Node 3: Sending start command to node 6 for task 31
+Node 6: Starting calculation for task 31 in response to start command from node 3
+Node 5: Starting calculation for task 31 in response to start command from node 3
+Node 3: Status message received from node 4 for task 31 (5%)
+Node 3: Status message received from node 6 for task 31 (5%)
+Node 3: Status message received from node 5 for task 31 (5%)
+Node 6: Status message received from node 7 for task 61 (95%)
+Node 3: Status message received from node 4 for task 31 (10%)
+Node 3: Status message received from node 5 for task 31 (10%)
+Node 3: Status message received from node 6 for task 31 (10%)
+Node 3: Status message received from node 4 for task 31 (15%)
+Node 6: Status message received from node 7 for task 61 (100%)
+Node 3: Status message received from node 5 for task 31 (15%)
+Node 3: Status message received from node 6 for task 31 (15%)
+Node 7: Calculation for task 61 initiated by node 6 has completed
+Node 8: Starting calculation for task 71 in response to start command from node 7
+Node 7: Sending start command to node 8 for task 71
+Node 7: Sending start command to node 9 for task 71
+Node 7: Sending start command to node 0 for task 71
+Node 7: Status message received from node 8 for task 71 (5%)
+Node 9: Starting calculation for task 71 in response to start command from node 7
+Node 0: Starting calculation for task 71 in response to start command from node 7
+Node 7: Status message received from node 0 for task 71 (5%)
+Node 7: Status message received from node 9 for task 71 (5%)
+Node 3: Status message received from node 4 for task 31 (20%)
+Node 3: Status message received from node 5 for task 31 (20%)
+Node 3: Status message received from node 6 for task 31 (20%)
+Node 3: Status message received from node 4 for task 31 (25%)
+Node 7: Status message received from node 0 for task 71 (10%)
+Node 7: Status message received from node 9 for task 71 (10%)
+Node 3: Status message received from node 5 for task 31 (25%)
+Node 7: Status message received from node 8 for task 71 (10%)
+Node 3: Status message received from node 6 for task 31 (25%)
+Node 3: Status message received from node 4 for task 31 (30%)
+Node 3: Status message received from node 5 for task 31 (30%)
+Node 7: Status message received from node 0 for task 71 (15%)
+Node 7: Status message received from node 9 for task 71 (15%)
+Node 7: Status message received from node 8 for task 71 (15%)
+Node 3: Status message received from node 4 for task 31 (35%)
+Node 3: Status message received from node 6 for task 31 (30%)
+Node 3: Status message received from node 5 for task 31 (35%)
+Node 7: Status message received from node 0 for task 71 (20%)
+Node 7: Status message received from node 9 for task 71 (20%)
+Node 3: Status message received from node 4 for task 31 (40%)
+Node 3: Status message received from node 5 for task 31 (40%)
+Node 3: Status message received from node 6 for task 31 (35%)
+Node 7: Status message received from node 8 for task 71 (20%)
+Node 7: Status message received from node 0 for task 71 (25%)
+Node 3: Status message received from node 4 for task 31 (45%)
+Node 7: Status message received from node 9 for task 71 (25%)
+Node 3: Status message received from node 5 for task 31 (45%)
+Node 3: Status message received from node 6 for task 31 (40%)
+Node 7: Status message received from node 8 for task 71 (25%)
+Node 3: Status message received from node 4 for task 31 (50%)
+Node 7: Status message received from node 0 for task 71 (30%)
+Node 7: Status message received from node 9 for task 71 (30%)
+Node 3 sending abort command to node 5 in deference to winning node 4 for task 31
+Node 3 sending abort command to node 6 in deference to winning node 4 for task 31
+Node 5: Aborting calculation for task 31 in response to abort command from node 3
+Node 6: Aborting calculation for task 31 in response to abort command from node 3
+Node 3: Status message received from node 4 for task 31 (55%)
+Node 7: Status message received from node 0 for task 71 (35%)
+Node 7: Status message received from node 9 for task 71 (35%)
+Node 7: Status message received from node 8 for task 71 (30%)
+Node 3: Status message received from node 4 for task 31 (60%)
+Node 7: Status message received from node 0 for task 71 (40%)
+Node 7: Status message received from node 9 for task 71 (40%)
+Node 3: Status message received from node 4 for task 31 (65%)
+Node 7: Status message received from node 8 for task 71 (35%)
+Node 7: Status message received from node 0 for task 71 (45%)
+Node 3: Status message received from node 4 for task 31 (70%)
+Node 7: Status message received from node 9 for task 71 (45%)
+Node 7: Status message received from node 8 for task 71 (40%)
+Node 7: Status message received from node 0 for task 71 (50%)
+Node 3: Status message received from node 4 for task 31 (75%)
+Node 7: Status message received from node 9 for task 71 (50%)
+Node 7 sending abort command to node 8 in deference to winning node 0 for task 71
+Node 7 sending abort command to node 9 in deference to winning node 0 for task 71
+Node 9: Aborting calculation for task 71 in response to abort command from node 7
+Node 8: Aborting calculation for task 71 in response to abort command from node 7
+Node 3: Status message received from node 4 for task 31 (80%)
+Node 7: Status message received from node 0 for task 71 (55%)
+Node 3: Status message received from node 4 for task 31 (85%)
+Node 7: Status message received from node 0 for task 71 (60%)
+Node 3: Status message received from node 4 for task 31 (90%)
+Node 7: Status message received from node 0 for task 71 (65%)
+Node 3: Status message received from node 4 for task 31 (95%)
+Node 7: Status message received from node 0 for task 71 (70%)
+Node 3: Status message received from node 4 for task 31 (100%)
+Node 4: Calculation for task 31 initiated by node 3 has completed
+Node 5: Starting calculation for task 41 in response to start command from node 4
+Node 4: Sending start command to node 5 for task 41
+Node 4: Sending start command to node 6 for task 41
+Node 4: Sending start command to node 7 for task 41
+Node 4: Status message received from node 5 for task 41 (5%)
+Node 7: Starting calculation for task 41 in response to start command from node 4
+Node 6: Starting calculation for task 41 in response to start command from node 4
+Node 4: Status message received from node 7 for task 41 (5%)
+Node 4: Status message received from node 6 for task 41 (5%)
+Node 7: Status message received from node 0 for task 71 (75%)
+Node 4: Status message received from node 7 for task 41 (10%)
+Node 4: Status message received from node 5 for task 41 (10%)
+Node 4: Status message received from node 6 for task 41 (10%)
+Node 7: Status message received from node 0 for task 71 (80%)
+Node 4: Status message received from node 7 for task 41 (15%)
+Node 4: Status message received from node 6 for task 41 (15%)
+Node 4: Status message received from node 5 for task 41 (15%)
+Node 7: Status message received from node 0 for task 71 (85%)
+Node 4: Status message received from node 7 for task 41 (20%)
+Node 4: Status message received from node 6 for task 41 (20%)
+Node 4: Status message received from node 5 for task 41 (20%)Node 7: Status message received from node 0 for task 71 (90%)
+
+Node 4: Status message received from node 7 for task 41 (25%)
+Node 7: Status message received from node 0 for task 71 (95%)
+Node 4: Status message received from node 6 for task 41 (25%)
+Node 4: Status message received from node 7 for task 41 (30%)
+Node 4: Status message received from node 5 for task 41 (25%)
+Node 4: Status message received from node 7 for task 41 (35%)
+Node 7: Status message received from node 0 for task 71 (100%)
+Node 4: Status message received from node 6 for task 41 (30%)
+Node 4: Status message received from node 5 for task 41 (30%)
+Node 0: Calculation for task 71 initiated by node 7 has completed
+Node 0: Sending start command to node 1 for task 2
+Node 0: Sending start command to node 2 for task 2
+Node 1: Starting calculation for task 2 in response to start command from node 0
+Node 0: Sending start command to node 3 for task 2
+Node 3: Starting calculation for task 2 in response to start command from node 0
+Node 0: Status message received from node 1 for task 2 (5%)Node 2: Starting calculation for task 2 in response to start command from node 0
+
+Node 0: Status message received from node 3 for task 2 (5%)
+Node 0: Status message received from node 2 for task 2 (5%)
+Node 4: Status message received from node 7 for task 41 (40%)
+Node 0: Status message received from node 3 for task 2 (10%)
+Node 0: Status message received from node 2 for task 2 (10%)
+Node 4: Status message received from node 6 for task 41 (35%)
+Node 4: Status message received from node 5 for task 41 (35%)
+Node 0: Status message received from node 1 for task 2 (10%)
+Node 4: Status message received from node 7 for task 41 (45%)
+Node 0: Status message received from node 3 for task 2 (15%)
+Node 0: Status message received from node 2 for task 2 (15%)
+Node 4: Status message received from node 6 for task 41 (40%)
+Node 0: Status message received from node 3 for task 2 (20%)
+Node 4: Status message received from node 7 for task 41 (50%)
+Node 0: Status message received from node 1 for task 2 (15%)
+Node 4: Status message received from node 5 for task 41 (40%)
+Node 0: Status message received from node 2 for task 2 (20%)
+Node 4 sending abort command to node 5 in deference to winning node 7 for task 41
+Node 4 sending abort command to node 6 in deference to winning node 7 for task 41
+Node 5: Aborting calculation for task 41 in response to abort command from node 4
+Node 0: Status message received from node 3 for task 2 (25%)
+Node 6: Aborting calculation for task 41 in response to abort command from node 4
+Node 0: Status message received from node 2 for task 2 (25%)
+Node 4: Status message received from node 7 for task 41 (55%)
+Node 0: Status message received from node 1 for task 2 (20%)
+Node 0: Status message received from node 3 for task 2 (30%)
+Node 0: Status message received from node 2 for task 2 (30%)
+Node 4: Status message received from node 7 for task 41 (60%)
+Node 0: Status message received from node 3 for task 2 (35%)
+Node 0: Status message received from node 2 for task 2 (35%)
+Node 0: Status message received from node 1 for task 2 (25%)
+Node 0: Status message received from node 3 for task 2 (40%)
+Node 4: Status message received from node 7 for task 41 (65%)
+Node 0: Status message received from node 2 for task 2 (40%)
+Node 0: Status message received from node 3 for task 2 (45%)
+Node 0: Status message received from node 1 for task 2 (30%)
+Node 4: Status message received from node 7 for task 41 (70%)
+Node 0: Status message received from node 2 for task 2 (45%)
+Node 0: Status message received from node 3 for task 2 (50%)
+Node 0: Status message received from node 2 for task 2 (50%)
+Node 0 sending abort command to node 1 in deference to winning node 3 for task 2
+Node 0 sending abort command to node 2 in deference to winning node 3 for task 2
+Node 4: Status message received from node 7 for task 41 (75%)
+Node 2: Aborting calculation for task 2 in response to abort command from node 0Node 0: Status message received from node 3 for task 2 (55%)
+Node 1: Aborting calculation for task 2 in response to abort command from node 0
+
+Node 0: Status message received from node 1 for task 2 (35%)
+Node 0: Status message received from node 3 for task 2 (60%)
+Node 4: Status message received from node 7 for task 41 (80%)
+Node 0: Status message received from node 3 for task 2 (65%)
+Node 4: Status message received from node 7 for task 41 (85%)
+Node 0: Status message received from node 3 for task 2 (70%)
+Node 0: Status message received from node 3 for task 2 (75%)
+Node 4: Status message received from node 7 for task 41 (90%)
+Node 0: Status message received from node 3 for task 2 (80%)
+Node 4: Status message received from node 7 for task 41 (95%)
+Node 0: Status message received from node 3 for task 2 (85%)
+Node 4: Status message received from node 7 for task 41 (100%)
+Node 7: Calculation for task 41 initiated by node 4 has completed
+Node 7: Sending start command to node 1 for task 72
+Node 1: Starting calculation for task 72 in response to start command from node 7
+Node 7: Sending start command to node 2 for task 72
+Node 7: Sending start command to node 3 for task 72
+Node 3: Starting calculation for task 72 in response to start command from node 7
+Node 2: Starting calculation for task 72 in response to start command from node 7
+Node 7: Status message received from node 1 for task 72 (5%)
+Node 7: Status message received from node 2 for task 72 (5%)
+Node 0: Status message received from node 3 for task 2 (90%)
+Node 7: Status message received from node 3 for task 72 (5%)
+Node 0: Status message received from node 3 for task 2 (10%)
+Node 7: Status message received from node 2 for task 72 (10%)
+Node 7: Status message received from node 1 for task 72 (10%)
+Node 7: Status message received from node 3 for task 72 (15%)
+Node 0: Status message received from node 3 for task 2 (20%)
+Node 7: Status message received from node 2 for task 72 (15%)
+Node 7: Status message received from node 1 for task 72 (15%)
+Node 0: Status message received from node 3 for task 2 (25%)
+Node 7: Status message received from node 3 for task 72 (30%)
+Node 7: Status message received from node 2 for task 72 (20%)
+Node 0: Status message received from node 3 for task 2 (35%)
+Node 7: Status message received from node 1 for task 72 (20%)
+Node 7: Status message received from node 2 for task 72 (25%)
+Node 7: Status message received from node 3 for task 72 (40%)
+Node 0: Status message received from node 3 for task 2 (45%)
+Node 7: Status message received from node 1 for task 72 (25%)
+Node 7: Status message received from node 2 for task 72 (30%)
+Node 0: Status message received from node 3 for task 2 (50%)
+Node 7: Status message received from node 3 for task 72 (55%)
+Node 7: Status message received from node 1 for task 72 (30%)
+Node 0: Status message received from node 3 for task 2 (60%)
+Node 7: Status message received from node 2 for task 72 (35%)
+Node 7 sending abort command to node 1 in deference to winning node 3 for task 72
+Node 7 sending abort command to node 2 in deference to winning node 3 for task 72
+Node 1: Aborting calculation for task 72 in response to abort command from node 7
+Node 2: Aborting calculation for task 72 in response to abort command from node 7
+Node 0: Status message received from node 3 for task 2 (65%)
+Node 7: Status message received from node 3 for task 72 (70%)
+Node 0: Status message received from node 3 for task 2 (75%)
+Node 7: Status message received from node 3 for task 72 (80%)
+Node 0: Status message received from node 3 for task 2 (85%)
+Node 0: Status message received from node 3 for task 2 (90%)
+Node 7: Status message received from node 3 for task 72 (95%)
+Node 0: Status message received from node 3 for task 2 (100%)
+Node 3: Calculation for task 2 initiated by node 0 has completed
+Node 3: Sending start command to node 7 for task 32
+Node 3: Sending start command to node 8 for task 32
+Node 3: Sending start command to node 9 for task 32
+Node 3: Calculation for task 72 initiated by node 7 has completed
+Node 3: Sending start command to node 0 for task 33
+Node 3: Sending start command to node 1 for task 33
+Node 3: Sending start command to node 2 for task 33
+Node 2: Starting calculation for task 33 in response to start command from node 3
+Node 9: Starting calculation for task 32 in response to start command from node 3
+Node 1: Starting calculation for task 33 in response to start command from node 3
+Node 0: Starting calculation for task 33 in response to start command from node 3
+Node 7: Starting calculation for task 32 in response to start command from node 3
+Node 8: Starting calculation for task 32 in response to start command from node 3
+Node 3: Status message received from node 0 for task 33 (5%)
+Node 3: Status message received from node 9 for task 32 (5%)
+Node 3: Status message received from node 2 for task 33 (5%)
+Node 3: Status message received from node 8 for task 32 (5%)
+Node 3: Status message received from node 7 for task 32 (5%)
+Node 3: Status message received from node 1 for task 33 (5%)
+Node 7: Status message received from node 3 for task 72 (105%)
+Node 3: Status message received from node 0 for task 33 (10%)
+Node 3: Status message received from node 2 for task 33 (10%)
+Node 3: Status message received from node 7 for task 32 (10%)
+Node 3: Status message received from node 1 for task 33 (10%)
+Node 3: Status message received from node 9 for task 32 (10%)
+Node 3: Status message received from node 8 for task 32 (10%)
+Node 3: Status message received from node 0 for task 33 (15%)
+Node 3: Status message received from node 2 for task 33 (15%)
+Node 3: Status message received from node 7 for task 32 (15%)
+Node 3: Status message received from node 1 for task 33 (15%)
+Node 3: Status message received from node 8 for task 32 (15%)
+Node 3: Status message received from node 9 for task 32 (15%)
+Node 3: Status message received from node 0 for task 33 (20%)
+Node 3: Status message received from node 7 for task 32 (20%)
+Node 3: Status message received from node 2 for task 33 (20%)
+Node 3: Status message received from node 1 for task 33 (20%)
+Node 3: Status message received from node 8 for task 32 (20%)
+Node 3: Status message received from node 9 for task 32 (20%)
+Node 3: Status message received from node 0 for task 33 (25%)
+Node 3: Status message received from node 7 for task 32 (25%)
+Node 3: Status message received from node 2 for task 33 (25%)
+Node 3: Status message received from node 1 for task 33 (25%)
+Node 3: Status message received from node 8 for task 32 (25%)
+Node 3: Status message received from node 0 for task 33 (30%)
+Node 3: Status message received from node 9 for task 32 (25%)
+Node 3: Status message received from node 7 for task 32 (30%)
+Node 3: Status message received from node 2 for task 33 (30%)
+Node 3: Status message received from node 1 for task 33 (30%)
+Node 3: Status message received from node 0 for task 33 (35%)
+Node 3: Status message received from node 8 for task 32 (30%)
+Node 3: Status message received from node 7 for task 32 (35%)
+Node 3: Status message received from node 2 for task 33 (35%)
+Node 3: Status message received from node 9 for task 32 (30%)
+Node 3: Status message received from node 1 for task 33 (35%)
+Node 3: Status message received from node 0 for task 33 (40%)
+Node 3: Status message received from node 7 for task 32 (40%)
+Node 3: Status message received from node 8 for task 32 (35%)
+Node 3: Status message received from node 2 for task 33 (40%)
+Node 3: Status message received from node 9 for task 32 (35%)
+Node 3: Status message received from node 0 for task 33 (45%)
+Node 3: Status message received from node 7 for task 32 (45%)
+Node 3: Status message received from node 1 for task 33 (40%)
+Node 3: Status message received from node 2 for task 33 (45%)
+Node 3: Status message received from node 8 for task 32 (40%)
+Node 3: Status message received from node 9 for task 32 (40%)
+Node 3: Status message received from node 0 for task 33 (50%)
+Node 3: Status message received from node 7 for task 32 (50%)
+Node 3 sending abort command to node 8 in deference to winning node 7 for task 32
+Node 3 sending abort command to node 9 in deference to winning node 7 for task 32
+Node 3 sending abort command to node 1 in deference to winning node 0 for task 33
+Node 8: Aborting calculation for task 32 in response to abort command from node 3
+Node 3 sending abort command to node 2 in deference to winning node 0 for task 33
+Node 1: Aborting calculation for task 33 in response to abort command from node 3
+Node 2: Aborting calculation for task 33 in response to abort command from node 3
+Node 9: Aborting calculation for task 32 in response to abort command from node 3
+Node 3: Status message received from node 0 for task 33 (55%)
+Node 3: Status message received from node 7 for task 32 (55%)
+Node 3: Status message received from node 0 for task 33 (60%)
+Node 3: Status message received from node 7 for task 32 (60%)
+Node 3: Status message received from node 0 for task 33 (65%)
+Node 3: Status message received from node 7 for task 32 (65%)
+Node 3: Status message received from node 0 for task 33 (70%)
+Node 3: Status message received from node 7 for task 32 (70%)
+Node 3: Status message received from node 0 for task 33 (75%)
+Node 3: Status message received from node 7 for task 32 (75%)
+Node 3: Status message received from node 0 for task 33 (80%)
+Node 3: Status message received from node 7 for task 32 (80%)
+Node 3: Status message received from node 0 for task 33 (85%)
+Node 3: Status message received from node 7 for task 32 (85%)
+Node 3: Status message received from node 0 for task 33 (90%)
+Node 3: Status message received from node 7 for task 32 (90%)
+Node 3: Status message received from node 0 for task 33 (95%)
+Node 3: Status message received from node 7 for task 32 (95%)
+Node 3: Status message received from node 0 for task 33 (100%)
+Node 3: Status message received from node 7 for task 32 (100%)
+Node 0: Calculation for task 33 initiated by node 3 has completed
+Node 0: Sending start command to node 4 for task 3
+Node 0: Sending start command to node 5 for task 3
+Node 4: Starting calculation for task 3 in response to start command from node 0
+Node 0: Sending start command to node 6 for task 3
+Node 5: Starting calculation for task 3 in response to start command from node 0
+Node 6: Starting calculation for task 3 in response to start command from node 0
+Node 0: Status message received from node 4 for task 3 (5%)
+Node 0: Status message received from node 6 for task 3 (5%)
+Node 0: Status message received from node 5 for task 3 (5%)
+Node 7: Calculation for task 32 initiated by node 3 has completed
+Node 7: Sending start command to node 4 for task 73
+Node 7: Sending start command to node 5 for task 73
+Node 4: Starting calculation for task 73 in response to start command from node 7
+Node 7: Sending start command to node 6 for task 73
+Node 6: Starting calculation for task 73 in response to start command from node 7
+Node 5: Starting calculation for task 73 in response to start command from node 7
+Node 7: Status message received from node 5 for task 73 (5%)
+Node 7: Status message received from node 4 for task 73 (5%)
+Node 7: Status message received from node 6 for task 73 (5%)
+Node 0: Status message received from node 5 for task 3 (10%)
+Node 7: Status message received from node 6 for task 73 (10%)
+Node 7: Status message received from node 5 for task 73 (15%)
+Node 7: Status message received from node 4 for task 73 (10%)
+Node 0: Status message received from node 6 for task 3 (15%)
+Node 0: Status message received from node 4 for task 3 (15%)
+Node 0: Status message received from node 5 for task 3 (20%)
+Node 7: Status message received from node 6 for task 73 (20%)
+Node 7: Status message received from node 5 for task 73 (25%)
+Node 7: Status message received from node 4 for task 73 (20%)
+Node 0: Status message received from node 5 for task 3 (30%)
+Node 7: Status message received from node 6 for task 73 (25%)
+Node 0: Status message received from node 6 for task 3 (30%)
+Node 7: Status message received from node 5 for task 73 (35%)
+Node 0: Status message received from node 4 for task 3 (25%)
+Node 0: Status message received from node 5 for task 3 (40%)Node 7: Status message received from node 4 for task 73 (30%)
+
+Node 7: Status message received from node 6 for task 73 (35%)
+Node 7: Status message received from node 5 for task 73 (45%)
+Node 0: Status message received from node 5 for task 3 (50%)
+Node 7: Status message received from node 6 for task 73 (40%)
+Node 7: Status message received from node 4 for task 73 (35%)
+Node 0: Status message received from node 6 for task 3 (45%)
+Node 0: Status message received from node 4 for task 3 (40%)
+Node 0 sending abort command to node 4 in deference to winning node 5 for task 3
+Node 0 sending abort command to node 6 in deference to winning node 5 for task 3
+Node 4: Aborting calculation for task 3 in response to abort command from node 0
+Node 6: Aborting calculation for task 3 in response to abort command from node 0
+Node 7: Status message received from node 5 for task 73 (55%)
+Node 0: Status message received from node 5 for task 3 (60%)
+Node 7 sending abort command to node 4 in deference to winning node 5 for task 73
+Node 7 sending abort command to node 6 in deference to winning node 5 for task 73
+Node 4: Aborting calculation for task 73 in response to abort command from node 7
+Node 6: Aborting calculation for task 73 in response to abort command from node 7
+Node 0: Status message received from node 5 for task 3 (65%)
+Node 7: Status message received from node 5 for task 73 (70%)
+Node 0: Status message received from node 6 for task 3 (50%)
+Node 0: Status message received from node 4 for task 3 (45%)
+Node 0: Status message received from node 5 for task 3 (75%)
+Node 7: Status message received from node 5 for task 73 (80%)
+Node 0: Status message received from node 5 for task 3 (85%)
+Node 0: Status message received from node 6 for task 3 (55%)
+Node 7: Status message received from node 5 for task 73 (90%)
+Node 0: Status message received from node 4 for task 3 (50%)
+Node 0: Status message received from node 5 for task 3 (95%)
+Node 7: Status message received from node 5 for task 73 (100%)
+Node 5: Calculation for task 3 initiated by node 0 has completed
+Node 5: Sending start command to node 6 for task 553
+Node 6: Starting calculation for task 553 in response to start command from node 5
+Node 5: Sending start command to node 7 for task 553
+Node 7: Starting calculation for task 553 in response to start command from node 5
+Node 5: Sending start command to node 8 for task 553
+Node 5: Calculation for task 73 initiated by node 7 has completed
+Node 5: Status message received from node 6 for task 553 (5%)
+Node 5: Sending start command to node 9 for task 554
+Node 5: Sending start command to node 0 for task 554
+Node 8: Starting calculation for task 553 in response to start command from node 5
+Node 5: Sending start command to node 1 for task 554
+Node 9: Starting calculation for task 554 in response to start command from node 5
+Node 0: Status message received from node 5 for task 3 (105%)
+Node 1: Starting calculation for task 554 in response to start command from node 5
+Node 0: Starting calculation for task 554 in response to start command from node 5
+Node 0: Status message received from node 6 for task 3 (10%)
+Node 5: Status message received from node 7 for task 553 (5%)
+Node 5: Status message received from node 0 for task 554 (5%)
+Node 0: Status message received from node 4 for task 3 (55%)
+Node 5: Status message received from node 9 for task 554 (5%)
+Node 5: Status message received from node 1 for task 554 (5%)
+Node 5: Status message received from node 8 for task 553 (5%)
+Node 5: Status message received from node 1 for task 554 (10%)
+Node 5: Status message received from node 7 for task 553 (10%)
+Node 5: Status message received from node 6 for task 553 (15%)
+Node 5: Status message received from node 9 for task 554 (10%)
+Node 5: Status message received from node 8 for task 553 (10%)
+Node 0: Status message received from node 6 for task 3 (20%)
+Node 5: Status message received from node 0 for task 554 (10%)
+Node 0: Status message received from node 4 for task 3 (60%)
+Node 5: Status message received from node 1 for task 554 (15%)
+Node 5: Status message received from node 7 for task 553 (15%)
+Node 5: Status message received from node 9 for task 554 (15%)
+Node 5: Status message received from node 6 for task 553 (25%)
+Node 5: Status message received from node 1 for task 554 (20%)
+Node 5: Status message received from node 8 for task 553 (15%)
+Node 5: Status message received from node 7 for task 553 (20%)
+Node 0: Status message received from node 6 for task 3 (30%)
+Node 5: Status message received from node 0 for task 554 (15%)
+Node 5: Status message received from node 9 for task 554 (20%)
+Node 0: Status message received from node 4 for task 3 (65%)
+Node 5: Status message received from node 6 for task 553 (35%)
+Node 5: Status message received from node 1 for task 554 (25%)
+Node 5: Status message received from node 7 for task 553 (25%)
+Node 5: Status message received from node 9 for task 554 (25%)
+Node 5: Status message received from node 8 for task 553 (20%)
+Node 5: Status message received from node 1 for task 554 (30%)
+Node 5: Status message received from node 0 for task 554 (20%)
+Node 0: Status message received from node 6 for task 3 (40%)
+Node 5: Status message received from node 6 for task 553 (45%)
+Node 0: Status message received from node 4 for task 3 (70%)
+Node 5: Status message received from node 7 for task 553 (30%)
+Node 5: Status message received from node 9 for task 554 (30%)
+Node 5: Status message received from node 1 for task 554 (35%)
+Node 5: Sending abort command to node 8 due to lag for task 553
+Node 8: Aborting calculation for task 553 in response to abort command from node 5
+Node 5: Status message received from node 6 for task 553 (50%)
+Node 5: Status message received from node 0 for task 554 (25%)
+Node 0: Status message received from node 6 for task 3 (55%)
+Node 5 sending abort command to node 7 in deference to winning node 6 for task 553
+Node 5: Status message received from node 7 for task 553 (35%)
+Node 7: Aborting calculation for task 553 in response to abort command from node 5
+Node 5: Status message received from node 1 for task 554 (40%)
+Node 5: Status message received from node 9 for task 554 (35%)
+Node 0: Status message received from node 4 for task 3 (75%)
+Node 5: Status message received from node 1 for task 554 (45%)
+Node 5: Status message received from node 6 for task 553 (60%)
+Node 5: Status message received from node 9 for task 554 (40%)
+Node 5: Status message received from node 0 for task 554 (30%)
+Node 0: Status message received from node 6 for task 3 (65%)
+Node 0: Status message received from node 4 for task 3 (80%)Node 5: Status message received from node 1 for task 554 (50%)
+
+Node 5: Status message received from node 9 for task 554 (45%)
+Node 5: Status message received from node 6 for task 553 (70%)
+Node 5 sending abort command to node 9 in deference to winning node 1 for task 554
+Node 5 sending abort command to node 0 in deference to winning node 1 for task 554
+Node 9: Aborting calculation for task 554 in response to abort command from node 5
+Node 0: Aborting calculation for task 554 in response to abort command from node 5
+Node 5: Status message received from node 1 for task 554 (55%)
+Node 0: Status message received from node 6 for task 3 (75%)
+Node 0: Status message received from node 4 for task 3 (85%)
+Node 5: Status message received from node 1 for task 554 (60%)
+Node 5: Status message received from node 6 for task 553 (80%)
+Node 5: Status message received from node 1 for task 554 (65%)
+Node 0: Status message received from node 6 for task 3 (85%)
+Node 5: Status message received from node 6 for task 553 (90%)
+Node 0: Status message received from node 4 for task 3 (90%)
+Node 5: Status message received from node 1 for task 554 (70%)
+Node 5: Status message received from node 6 for task 553 (100%)
+Node 0: Status message received from node 6 for task 3 (95%)
+Node 5: Status message received from node 1 for task 554 (75%)
+Node 6: Calculation for task 553 initiated by node 5 has completed
+Node 6: Sending start command to node 0 for task 62
+Node 0: Starting calculation for task 62 in response to start command from node 6
+Node 6: Sending start command to node 1 for task 62
+Node 6: Sending start command to node 2 for task 62
+Node 6: Status message received from node 0 for task 62 (5%)
+Node 1: Starting calculation for task 62 in response to start command from node 6
+Node 2: Starting calculation for task 62 in response to start command from node 6
+Node 6: Status message received from node 1 for task 62 (5%)
+Node 6: Status message received from node 2 for task 62 (5%)
+Node 0: Status message received from node 4 for task 3 (95%)
+Node 5: Status message received from node 1 for task 554 (10%)
+Node 6: Status message received from node 0 for task 62 (10%)
+Node 6: Status message received from node 2 for task 62 (10%)
+Node 0: Status message received from node 6 for task 3 (105%)
+Node 6: Status message received from node 1 for task 62 (15%)
+Node 5: Status message received from node 1 for task 554 (20%)
+Node 6: Status message received from node 0 for task 62 (15%)
+Node 0: Status message received from node 4 for task 3 (100%)
+Node 6: Status message received from node 2 for task 62 (15%)
+Node 6: Status message received from node 0 for task 62 (20%)
+Node 5: Status message received from node 1 for task 554 (25%)
+Node 6: Status message received from node 1 for task 62 (30%)
+Node 6: Status message received from node 2 for task 62 (20%)
+Node 5: Status message received from node 1 for task 554 (35%)
+Node 6: Status message received from node 0 for task 62 (25%)
+Node 6: Status message received from node 1 for task 62 (40%)
+Node 6: Status message received from node 0 for task 62 (30%)
+Node 5: Status message received from node 1 for task 554 (45%)
+Node 6: Status message received from node 2 for task 62 (25%)
+Node 6: Status message received from node 0 for task 62 (35%)
+Node 5: Status message received from node 1 for task 554 (50%)
+Node 6: Status message received from node 2 for task 62 (30%)
+Node 6: Status message received from node 1 for task 62 (55%)
+Node 6: Status message received from node 0 for task 62 (40%)
+Node 5: Status message received from node 1 for task 554 (60%)
+Node 6: Sending abort command to node 2 due to lag for task 62
+Node 6 sending abort command to node 0 in deference to winning node 1 for task 62
+Node 0: Aborting calculation for task 62 in response to abort command from node 6
+Node 2: Aborting calculation for task 62 in response to abort command from node 6
+Node 6: Status message received from node 1 for task 62 (65%)
+Node 5: Status message received from node 1 for task 554 (70%)
+Node 5: Status message received from node 1 for task 554 (75%)
+Node 6: Status message received from node 1 for task 62 (80%)
+Node 5: Status message received from node 1 for task 554 (85%)
+Node 5: Status message received from node 1 for task 554 (90%)
+Node 6: Status message received from node 1 for task 62 (95%)
+Node 5: Status message received from node 1 for task 554 (100%)
+Node 1: Calculation for task 554 initiated by node 5 has completed
+Node 1: Sending start command to node 5 for task 12
+Node 1: Sending start command to node 6 for task 12
+Node 5: Starting calculation for task 12 in response to start command from node 1
+Node 1: Sending start command to node 7 for task 12
+Node 1: Calculation for task 62 initiated by node 6 has completed
+Node 1: Sending start command to node 8 for task 13
+Node 1: Sending start command to node 9 for task 13
+Node 7: Starting calculation for task 12 in response to start command from node 1
+Node 1: Sending start command to node 0 for task 13
+Node 6: Starting calculation for task 12 in response to start command from node 1
+Node 6: Status message received from node 1 for task 62 (105%)Node 8: Starting calculation for task 13 in response to start command from node 1
+Node 1: Status message received from node 5 for task 12 (5%)
+
+Node 9: Starting calculation for task 13 in response to start command from node 1
+Node 0: Starting calculation for task 13 in response to start command from node 1
+Node 1: Status message received from node 7 for task 12 (5%)
+Node 1: Status message received from node 6 for task 12 (5%)
+Node 1: Status message received from node 8 for task 13 (5%)
+Node 1: Status message received from node 9 for task 13 (5%)
+Node 1: Status message received from node 0 for task 13 (5%)
+Node 1: Status message received from node 9 for task 13 (10%)
+Node 1: Status message received from node 0 for task 13 (10%)
+Node 1: Status message received from node 6 for task 12 (10%)
+Node 1: Status message received from node 5 for task 12 (10%)
+Node 1: Status message received from node 8 for task 13 (10%)
+Node 1: Status message received from node 7 for task 12 (10%)
+Node 1: Status message received from node 9 for task 13 (15%)
+Node 1: Status message received from node 0 for task 13 (15%)
+Node 1: Status message received from node 6 for task 12 (15%)
+Node 1: Status message received from node 5 for task 12 (15%)
+Node 1: Status message received from node 9 for task 13 (20%)
+Node 1: Status message received from node 8 for task 13 (15%)
+Node 1: Status message received from node 7 for task 12 (15%)
+Node 1: Status message received from node 0 for task 13 (20%)
+Node 1: Status message received from node 6 for task 12 (20%)
+Node 1: Status message received from node 9 for task 13 (25%)
+Node 1: Status message received from node 5 for task 12 (20%)
+Node 1: Status message received from node 0 for task 13 (25%)
+Node 1: Status message received from node 8 for task 13 (20%)
+Node 1: Status message received from node 9 for task 13 (30%)
+Node 1: Status message received from node 7 for task 12 (20%)
+Node 1: Status message received from node 6 for task 12 (25%)
+Node 1: Status message received from node 0 for task 13 (30%)
+Node 1: Status message received from node 9 for task 13 (35%)
+Node 1: Status message received from node 5 for task 12 (25%)
+Node 1: Status message received from node 6 for task 12 (30%)
+Node 1: Status message received from node 8 for task 13 (25%)
+Node 1: Status message received from node 0 for task 13 (35%)
+Node 1: Status message received from node 7 for task 12 (25%)
+Node 1: Status message received from node 9 for task 13 (40%)
+Node 1: Status message received from node 6 for task 12 (35%)
+Node 1: Status message received from node 5 for task 12 (30%)
+Node 1: Status message received from node 0 for task 13 (40%)
+Node 1: Status message received from node 9 for task 13 (45%)
+Node 1: Status message received from node 8 for task 13 (30%)
+Node 1: Status message received from node 7 for task 12 (30%)
+Node 1: Status message received from node 6 for task 12 (40%)
+Node 1: Status message received from node 0 for task 13 (45%)
+Node 1: Status message received from node 9 for task 13 (50%)
+Node 1: Status message received from node 5 for task 12 (35%)
+Node 1 sending abort command to node 8 in deference to winning node 9 for task 13
+Node 1 sending abort command to node 0 in deference to winning node 9 for task 13
+Node 8: Aborting calculation for task 13 in response to abort command from node 1
+Node 0: Aborting calculation for task 13 in response to abort command from node 1
+Node 1: Status message received from node 9 for task 13 (55%)
+Node 1: Status message received from node 6 for task 12 (45%)
+Node 1: Status message received from node 7 for task 12 (35%)
+Node 1: Status message received from node 5 for task 12 (40%)
+Node 1: Status message received from node 9 for task 13 (60%)
+Node 1: Status message received from node 6 for task 12 (50%)
+Node 1: Status message received from node 7 for task 12 (40%)
+Node 1: Status message received from node 9 for task 13 (65%)
+Node 1 sending abort command to node 5 in deference to winning node 6 for task 12
+Node 1 sending abort command to node 7 in deference to winning node 6 for task 12
+Node 7: Aborting calculation for task 12 in response to abort command from node 1
+Node 5: Aborting calculation for task 12 in response to abort command from node 1
+Node 1: Status message received from node 5 for task 12 (45%)
+Node 1: Status message received from node 6 for task 12 (55%)
+Node 1: Status message received from node 9 for task 13 (70%)
+Node 1: Status message received from node 6 for task 12 (60%)
+Node 1: Status message received from node 9 for task 13 (75%)
+Node 1: Status message received from node 9 for task 13 (80%)
+Node 1: Status message received from node 6 for task 12 (65%)
+Node 1: Status message received from node 9 for task 13 (85%)
+Node 1: Status message received from node 6 for task 12 (70%)
+Node 1: Status message received from node 9 for task 13 (90%)
+Node 1: Status message received from node 6 for task 12 (75%)
+Node 1: Status message received from node 9 for task 13 (95%)
+Node 1: Status message received from node 9 for task 13 (100%)
+Node 9: Calculation for task 13 initiated by node 1 has completed
+Node 0: Starting calculation for task 91 in response to start command from node 9
+Node 9: Sending start command to node 0 for task 91
+Node 9: Sending start command to node 1 for task 91
+Node 9: Status message received from node 0 for task 91 (5%)
+Node 9: Sending start command to node 2 for task 91
+Node 1: Status message received from node 6 for task 12 (80%)
+Node 2: Starting calculation for task 91 in response to start command from node 9
+Node 1: Starting calculation for task 91 in response to start command from node 9
+Node 9: Status message received from node 1 for task 91 (5%)
+Node 9: Status message received from node 2 for task 91 (5%)
+Node 9: Status message received from node 0 for task 91 (10%)
+Node 1: Status message received from node 6 for task 12 (85%)
+Node 9: Status message received from node 1 for task 91 (10%)
+Node 9: Status message received from node 2 for task 91 (10%)
+Node 9: Status message received from node 0 for task 91 (15%)
+Node 1: Status message received from node 6 for task 12 (90%)
+Node 9: Status message received from node 0 for task 91 (20%)
+Node 9: Status message received from node 1 for task 91 (15%)
+Node 9: Status message received from node 2 for task 91 (15%)
+Node 1: Status message received from node 6 for task 12 (95%)
+Node 9: Status message received from node 0 for task 91 (25%)
+Node 1: Status message received from node 6 for task 12 (100%)
+Node 9: Status message received from node 1 for task 91 (20%)
+Node 9: Status message received from node 2 for task 91 (20%)
+Node 9: Status message received from node 0 for task 91 (30%)
+Node 6: Calculation for task 12 initiated by node 1 has completed
+Node 6: Sending start command to node 3 for task 63
+Node 6: Sending start command to node 4 for task 63
+Node 6: Sending start command to node 5 for task 63
+Node 3: Starting calculation for task 63 in response to start command from node 6
+Node 4: Starting calculation for task 63 in response to start command from node 6
+Node 5: Starting calculation for task 63 in response to start command from node 6
+Node 6: Status message received from node 3 for task 63 (5%)
+Node 6: Status message received from node 5 for task 63 (5%)
+Node 6: Status message received from node 4 for task 63 (5%)
+Node 9: Status message received from node 0 for task 91 (35%)
+Node 6: Status message received from node 5 for task 63 (10%)
+Node 9: Status message received from node 1 for task 91 (25%)
+Node 6: Status message received from node 3 for task 63 (10%)
+Node 9: Status message received from node 2 for task 91 (25%)
+Node 6: Status message received from node 4 for task 63 (10%)
+Node 9: Status message received from node 0 for task 91 (40%)
+Node 6: Status message received from node 5 for task 63 (15%)
+Node 6: Status message received from node 3 for task 63 (15%)
+Node 6: Status message received from node 4 for task 63 (15%)
+Node 9: Status message received from node 0 for task 91 (45%)
+Node 9: Status message received from node 1 for task 91 (30%)
+Node 6: Status message received from node 5 for task 63 (20%)
+Node 9: Status message received from node 2 for task 91 (30%)
+Node 6: Status message received from node 3 for task 63 (20%)
+Node 9: Status message received from node 0 for task 91 (50%)
+Node 6: Status message received from node 5 for task 63 (25%)
+Node 6: Status message received from node 4 for task 63 (20%)
+Node 9 sending abort command to node 1 in deference to winning node 0 for task 91
+Node 9 sending abort command to node 2 in deference to winning node 0 for task 91
+Node 2: Aborting calculation for task 91 in response to abort command from node 9
+Node 9: Status message received from node 1 for task 91 (35%)
+Node 1: Aborting calculation for task 91 in response to abort command from node 9
+Node 9: Status message received from node 0 for task 91 (55%)
+Node 6: Status message received from node 5 for task 63 (30%)
+Node 6: Status message received from node 3 for task 63 (25%)
+Node 6: Status message received from node 4 for task 63 (25%)
+Node 6: Status message received from node 5 for task 63 (35%)
+Node 9: Status message received from node 0 for task 91 (60%)
+Node 6: Status message received from node 3 for task 63 (30%)
+Node 6: Status message received from node 4 for task 63 (30%)
+Node 6: Status message received from node 5 for task 63 (40%)
+Node 9: Status message received from node 0 for task 91 (65%)
+Node 6: Status message received from node 3 for task 63 (35%)
+Node 6: Status message received from node 5 for task 63 (45%)
+Node 6: Status message received from node 4 for task 63 (35%)
+Node 9: Status message received from node 0 for task 91 (70%)
+Node 6: Status message received from node 3 for task 63 (40%)
+Node 6: Status message received from node 5 for task 63 (50%)
+Node 9: Status message received from node 0 for task 91 (75%)
+Node 6: Status message received from node 4 for task 63 (40%)
+Node 6 sending abort command to node 3 in deference to winning node 5 for task 63
+Node 6 sending abort command to node 4 in deference to winning node 5 for task 63
+Node 3: Aborting calculation for task 63 in response to abort command from node 6
+Node 4: Aborting calculation for task 63 in response to abort command from node 6
+Node 6: Status message received from node 5 for task 63 (55%)
+Node 9: Status message received from node 0 for task 91 (80%)
+Node 6: Status message received from node 5 for task 63 (60%)
+Node 9: Status message received from node 0 for task 91 (85%)
+Node 6: Status message received from node 5 for task 63 (65%)
+Node 9: Status message received from node 0 for task 91 (90%)
+Node 6: Status message received from node 5 for task 63 (70%)
+Node 9: Status message received from node 0 for task 91 (95%)
+Node 6: Status message received from node 5 for task 63 (75%)
+Node 9: Status message received from node 0 for task 91 (100%)
+Node 6: Status message received from node 5 for task 63 (80%)
+Node 0: Calculation for task 91 initiated by node 9 has completed
+Node 0: Sending start command to node 7 for task 4
+Node 0: Sending start command to node 8 for task 4
+Node 0: Sending start command to node 9 for task 4
+Node 7: Starting calculation for task 4 in response to start command from node 0
+Node 8: Starting calculation for task 4 in response to start command from node 0
+Node 9: Starting calculation for task 4 in response to start command from node 0
+Node 0: Status message received from node 9 for task 4 (5%)
+Node 0: Status message received from node 8 for task 4 (5%)
+Node 0: Status message received from node 7 for task 4 (5%)
+Node 6: Status message received from node 5 for task 63 (85%)
+Node 0: Status message received from node 8 for task 4 (10%)
+Node 6: Status message received from node 5 for task 63 (90%)
+Node 0: Status message received from node 9 for task 4 (10%)
+Node 0: Status message received from node 8 for task 4 (15%)
+Node 0: Status message received from node 7 for task 4 (10%)
+Node 6: Status message received from node 5 for task 63 (95%)
+Node 0: Status message received from node 8 for task 4 (20%)
+Node 0: Status message received from node 9 for task 4 (15%)
+Node 6: Status message received from node 5 for task 63 (100%)
+Node 0: Status message received from node 8 for task 4 (25%)
+Node 0: Status message received from node 7 for task 4 (15%)
+Node 5: Calculation for task 63 initiated by node 6 has completed
+Node 5: Sending start command to node 2 for task 555
+Node 5: Sending start command to node 3 for task 555
+Node 5: Sending start command to node 4 for task 555
+Node 3: Starting calculation for task 555 in response to start command from node 5
+Node 2: Starting calculation for task 555 in response to start command from node 5
+Node 4: Starting calculation for task 555 in response to start command from node 5
+Node 5: Status message received from node 4 for task 555 (5%)
+Node 5: Status message received from node 3 for task 555 (5%)
+Node 5: Status message received from node 2 for task 555 (5%)
+Node 0: Status message received from node 8 for task 4 (30%)
+Node 0: Status message received from node 9 for task 4 (20%)
+Node 5: Status message received from node 3 for task 555 (10%)
+Node 0: Status message received from node 7 for task 4 (20%)
+Node 5: Status message received from node 2 for task 555 (10%)
+Node 0: Status message received from node 8 for task 4 (35%)
+Node 5: Status message received from node 4 for task 555 (10%)
+Node 5: Status message received from node 3 for task 555 (15%)
+Node 0: Status message received from node 9 for task 4 (25%)
+Node 0: Status message received from node 8 for task 4 (40%)
+Node 5: Status message received from node 3 for task 555 (20%)
+Node 5: Status message received from node 2 for task 555 (15%)
+Node 0: Status message received from node 7 for task 4 (25%)
+Node 0: Status message received from node 8 for task 4 (45%)
+Node 5: Status message received from node 4 for task 555 (15%)
+Node 0: Status message received from node 9 for task 4 (30%)
+Node 5: Status message received from node 3 for task 555 (25%)
+Node 0: Status message received from node 8 for task 4 (50%)
+Node 5: Status message received from node 2 for task 555 (20%)
+Node 0: Status message received from node 7 for task 4 (30%)
+Node 0 sending abort command to node 7 in deference to winning node 8 for task 4
+Node 0 sending abort command to node 9 in deference to winning node 8 for task 4
+Node 7: Aborting calculation for task 4 in response to abort command from node 0Node 9: Aborting calculation for task 4 in response to abort command from node 0
+
+Node 0: Status message received from node 8 for task 4 (55%)
+Node 5: Status message received from node 3 for task 555 (30%)
+Node 5: Status message received from node 4 for task 555 (20%)
+Node 5: Status message received from node 3 for task 555 (35%)
+Node 0: Status message received from node 8 for task 4 (60%)
+Node 5: Status message received from node 2 for task 555 (25%)
+Node 5: Status message received from node 4 for task 555 (25%)
+Node 5: Status message received from node 3 for task 555 (40%)
+Node 0: Status message received from node 8 for task 4 (65%)
+Node 0: Status message received from node 8 for task 4 (70%)
+Node 5: Status message received from node 3 for task 555 (45%)
+Node 5: Status message received from node 2 for task 555 (30%)
+Node 5: Status message received from node 4 for task 555 (30%)
+Node 0: Status message received from node 8 for task 4 (75%)
+Node 5: Status message received from node 3 for task 555 (50%)
+Node 0: Status message received from node 8 for task 4 (80%)
+Node 5: Status message received from node 2 for task 555 (35%)
+Node 5 sending abort command to node 2 in deference to winning node 3 for task 555
+Node 5 sending abort command to node 4 in deference to winning node 3 for task 555
+Node 2: Aborting calculation for task 555 in response to abort command from node 5
+Node 4: Aborting calculation for task 555 in response to abort command from node 5
+Node 5: Status message received from node 3 for task 555 (55%)
+Node 0: Status message received from node 8 for task 4 (85%)
+Node 5: Status message received from node 3 for task 555 (60%)
+Node 0: Status message received from node 8 for task 4 (90%)
+Node 5: Status message received from node 3 for task 555 (65%)
+Node 0: Status message received from node 8 for task 4 (95%)
+Node 5: Status message received from node 3 for task 555 (70%)
+Node 0: Status message received from node 8 for task 4 (100%)
+Node 8: Calculation for task 4 initiated by node 0 has completed
+Node 8: Sending start command to node 9 for task 81Node 9: Starting calculation for task 81 in response to start command from node 8
+
+Node 8: Sending start command to node 0 for task 81
+Node 8: Sending start command to node 1 for task 81
+Node 8: Status message received from node 9 for task 81 (5%)Node 0: Starting calculation for task 81 in response to start command from node 8
+
+Node 8: Status message received from node 0 for task 81 (5%)
+Node 1: Starting calculation for task 81 in response to start command from node 8
+Node 8: Status message received from node 1 for task 81 (5%)
+Node 5: Status message received from node 3 for task 555 (75%)
+Node 8: Status message received from node 9 for task 81 (10%)
+Node 5: Status message received from node 3 for task 555 (80%)
+Node 8: Status message received from node 0 for task 81 (10%)
+Node 8: Status message received from node 1 for task 81 (10%)
+Node 8: Status message received from node 9 for task 81 (15%)
+Node 5: Status message received from node 3 for task 555 (85%)
+Node 8: Status message received from node 1 for task 81 (15%)
+Node 8: Status message received from node 0 for task 81 (15%)
+Node 8: Status message received from node 9 for task 81 (20%)
+Node 5: Status message received from node 3 for task 555 (90%)
+Node 8: Status message received from node 1 for task 81 (20%)
+Node 8: Status message received from node 0 for task 81 (20%)
+Node 8: Status message received from node 9 for task 81 (25%)
+Node 5: Status message received from node 3 for task 555 (95%)
+Node 8: Status message received from node 1 for task 81 (25%)
+Node 8: Status message received from node 0 for task 81 (25%)
+Node 5: Status message received from node 3 for task 555 (100%)
+Node 8: Status message received from node 9 for task 81 (30%)
+Node 3: Calculation for task 555 initiated by node 5 has completed
+Node 3: Sending start command to node 3 for task 34
+Node 3: Starting calculation for task 34 in response to start command from node 3
+Node 3: Sending start command to node 4 for task 34
+Node 3: Sending start command to node 5 for task 34
+Node 4: Starting calculation for task 34 in response to start command from node 3
+Node 5: Starting calculation for task 34 in response to start command from node 3
+Node 3: Status message received from node 3 for task 34 (5%)
+Node 3: Status message received from node 4 for task 34 (5%)
+Node 3: Status message received from node 5 for task 34 (5%)
+Node 8: Status message received from node 1 for task 81 (30%)
+Node 8: Status message received from node 9 for task 81 (35%)
+Node 8: Status message received from node 0 for task 81 (30%)
+Node 8: Status message received from node 1 for task 81 (35%)
+Node 3: Status message received from node 3 for task 34 (10%)
+Node 3: Status message received from node 5 for task 34 (10%)
+Node 3: Status message received from node 4 for task 34 (10%)
+Node 8: Status message received from node 9 for task 81 (40%)
+Node 8: Status message received from node 0 for task 81 (35%)
+Node 8: Status message received from node 1 for task 81 (40%)
+Node 8: Status message received from node 9 for task 81 (45%)
+Node 3: Status message received from node 3 for task 34 (15%)
+Node 3: Status message received from node 5 for task 34 (15%)
+Node 3: Status message received from node 4 for task 34 (15%)
+Node 8: Status message received from node 0 for task 81 (40%)
+Node 8: Status message received from node 1 for task 81 (45%)
+Node 8: Status message received from node 9 for task 81 (50%)
+Node 8 sending abort command to node 0 in deference to winning node 9 for task 81
+Node 8 sending abort command to node 1 in deference to winning node 9 for task 81
+Node 0: Aborting calculation for task 81 in response to abort command from node 8
+Node 1: Aborting calculation for task 81 in response to abort command from node 8
+Node 3: Status message received from node 3 for task 34 (20%)
+Node 3: Status message received from node 5 for task 34 (20%)
+Node 3: Status message received from node 4 for task 34 (20%)
+Node 8: Status message received from node 9 for task 81 (55%)
+Node 3: Status message received from node 3 for task 34 (25%)
+Node 8: Status message received from node 9 for task 81 (60%)
+Node 3: Status message received from node 5 for task 34 (25%)
+Node 3: Status message received from node 4 for task 34 (25%)
+Node 8: Status message received from node 9 for task 81 (65%)
+Node 3: Status message received from node 3 for task 34 (30%)
+Node 3: Status message received from node 5 for task 34 (30%)
+Node 3: Status message received from node 4 for task 34 (30%)
+Node 8: Status message received from node 9 for task 81 (70%)
+Node 3: Status message received from node 3 for task 34 (35%)
+Node 8: Status message received from node 9 for task 81 (75%)
+Node 3: Status message received from node 5 for task 34 (35%)
+Node 3: Status message received from node 4 for task 34 (35%)
+Node 3: Status message received from node 3 for task 34 (40%)
+Node 8: Status message received from node 9 for task 81 (80%)
+Node 3: Status message received from node 5 for task 34 (40%)
+Node 3: Status message received from node 4 for task 34 (40%)
+Node 8: Status message received from node 9 for task 81 (85%)
+Node 3: Status message received from node 3 for task 34 (45%)
+Node 3: Status message received from node 5 for task 34 (45%)
+Node 8: Status message received from node 9 for task 81 (90%)
+Node 3: Status message received from node 4 for task 34 (45%)
+Node 3: Status message received from node 3 for task 34 (50%)
+Node 3 sending abort command to node 4 in deference to winning node 3 for task 34
+Node 3 sending abort command to node 5 in deference to winning node 3 for task 34
+Node 4: Aborting calculation for task 34 in response to abort command from node 3
+Node 5: Aborting calculation for task 34 in response to abort command from node 3
+Node 8: Status message received from node 9 for task 81 (95%)
+Node 3: Status message received from node 3 for task 34 (55%)
+Node 8: Status message received from node 9 for task 81 (100%)
+Node 9: Calculation for task 81 initiated by node 8 has completed
+Node 9: Sending start command to node 3 for task 92
+Node 3: Starting calculation for task 92 in response to start command from node 9
+Node 9: Sending start command to node 4 for task 92
+Node 4: Starting calculation for task 92 in response to start command from node 9
+Node 9: Sending start command to node 5 for task 92
+Node 5: Starting calculation for task 92 in response to start command from node 9
+Node 9: Status message received from node 4 for task 92 (5%)
+Node 9: Status message received from node 3 for task 92 (5%)
+Node 9: Status message received from node 5 for task 92 (5%)
+Node 3: Status message received from node 3 for task 34 (10%)
+Node 9: Status message received from node 3 for task 92 (15%)
+Node 9: Status message received from node 5 for task 92 (10%)
+Node 9: Status message received from node 4 for task 92 (10%)
+Node 3: Status message received from node 3 for task 34 (20%)
+Node 9: Status message received from node 3 for task 92 (25%)
+Node 9: Status message received from node 5 for task 92 (15%)
+Node 9: Status message received from node 4 for task 92 (15%)
+Node 3: Status message received from node 3 for task 34 (30%)
+Node 9: Status message received from node 3 for task 92 (35%)
+Node 9: Status message received from node 5 for task 92 (20%)
+Node 9: Status message received from node 4 for task 92 (20%)
+Node 9: Status message received from node 3 for task 92 (40%)
+Node 3: Status message received from node 3 for task 34 (45%)
+Node 9: Status message received from node 5 for task 92 (25%)
+Node 9: Status message received from node 3 for task 92 (50%)
+Node 9: Status message received from node 4 for task 92 (25%)
+Node 9: Sending abort command to node 4 due to lag for task 92
+Node 9: Sending abort command to node 5 due to lag for task 92
+Node 5: Aborting calculation for task 92 in response to abort command from node 9
+Node 4: Aborting calculation for task 92 in response to abort command from node 9
+Node 3: Status message received from node 3 for task 34 (55%)
+Node 9: Status message received from node 3 for task 92 (60%)
+Node 3: Status message received from node 3 for task 34 (65%)
+Node 9: Status message received from node 3 for task 92 (70%)
+Node 3: Status message received from node 3 for task 34 (75%)
+Node 9: Status message received from node 3 for task 92 (80%)
+Node 9: Status message received from node 3 for task 92 (85%)
+Node 3: Status message received from node 3 for task 34 (90%)
+Node 9: Status message received from node 3 for task 92 (95%)
+Node 3: Status message received from node 3 for task 34 (100%)
+Node 3: Calculation for task 34 initiated by node 3 has completed
+Node 3: Sending start command to node 6 for task 35
+Node 3: Sending start command to node 7 for task 35
+Node 3: Sending start command to node 8 for task 35
+Node 3: Calculation for task 92 initiated by node 9 has completed
+Node 6: Starting calculation for task 35 in response to start command from node 3
+Node 3: Sending start command to node 9 for task 36
+Node 3: Sending start command to node 0 for task 36
+Node 9: Starting calculation for task 36 in response to start command from node 3
+Node 3: Sending start command to node 1 for task 36
+Node 7: Starting calculation for task 35 in response to start command from node 3
+Node 1: Starting calculation for task 36 in response to start command from node 3
+Node 0: Starting calculation for task 36 in response to start command from node 3
+Node 8: Starting calculation for task 35 in response to start command from node 3
+Node 3: Status message received from node 6 for task 35 (5%)
+Node 9: Status message received from node 3 for task 92 (105%)
+Node 3: Status message received from node 0 for task 36 (5%)
+Node 3: Status message received from node 9 for task 36 (5%)
+Node 3: Status message received from node 7 for task 35 (5%)
+Node 3: Status message received from node 8 for task 35 (5%)
+Node 3: Status message received from node 1 for task 36 (5%)
+Node 3: Status message received from node 7 for task 35 (10%)
+Node 3: Status message received from node 6 for task 35 (10%)
+Node 3: Status message received from node 9 for task 36 (10%)
+Node 3: Status message received from node 1 for task 36 (10%)
+Node 3: Status message received from node 0 for task 36 (10%)
+Node 3: Status message received from node 8 for task 35 (10%)
+Node 3: Status message received from node 7 for task 35 (15%)
+Node 3: Status message received from node 6 for task 35 (15%)
+Node 3: Status message received from node 7 for task 35 (20%)
+Node 3: Status message received from node 9 for task 36 (15%)
+Node 3: Status message received from node 8 for task 35 (15%)
+Node 3: Status message received from node 1 for task 36 (15%)
+Node 3: Status message received from node 0 for task 36 (15%)
+Node 3: Status message received from node 6 for task 35 (20%)
+Node 3: Status message received from node 7 for task 35 (25%)
+Node 3: Status message received from node 9 for task 36 (20%)
+Node 3: Status message received from node 7 for task 35 (30%)
+Node 3: Status message received from node 6 for task 35 (25%)
+Node 3: Status message received from node 8 for task 35 (20%)
+Node 3: Status message received from node 0 for task 36 (20%)
+Node 3: Status message received from node 1 for task 36 (20%)
+Node 3: Status message received from node 7 for task 35 (35%)
+Node 3: Status message received from node 9 for task 36 (25%)
+Node 3: Status message received from node 6 for task 35 (30%)
+Node 3: Status message received from node 7 for task 35 (40%)
+Node 3: Status message received from node 1 for task 36 (25%)
+Node 3: Status message received from node 8 for task 35 (25%)
+Node 3: Status message received from node 0 for task 36 (25%)
+Node 3: Status message received from node 9 for task 36 (30%)
+Node 3: Status message received from node 6 for task 35 (35%)
+Node 3: Status message received from node 7 for task 35 (45%)
+Node 3: Status message received from node 7 for task 35 (50%)
+Node 3: Status message received from node 6 for task 35 (40%)
+Node 3: Sending abort command to node 8 due to lag for task 35
+Node 3 sending abort command to node 6 in deference to winning node 7 for task 35
+Node 8: Aborting calculation for task 35 in response to abort command from node 3
+Node 6: Aborting calculation for task 35 in response to abort command from node 3
+Node 3: Status message received from node 1 for task 36 (30%)
+Node 3: Status message received from node 9 for task 36 (35%)
+Node 3: Status message received from node 0 for task 36 (30%)
+Node 3: Status message received from node 7 for task 35 (55%)
+Node 3: Status message received from node 9 for task 36 (40%)
+Node 3: Status message received from node 7 for task 35 (60%)
+Node 3: Status message received from node 1 for task 36 (35%)
+Node 3: Status message received from node 0 for task 36 (35%)
+Node 3: Status message received from node 7 for task 35 (65%)
+Node 3: Status message received from node 9 for task 36 (45%)
+Node 3: Status message received from node 1 for task 36 (40%)
+Node 3: Status message received from node 7 for task 35 (70%)
+Node 3: Status message received from node 0 for task 36 (40%)
+Node 3: Status message received from node 7 for task 35 (75%)
+Node 3: Status message received from node 9 for task 36 (50%)
+Node 3: Status message received from node 1 for task 36 (45%)
+Node 3 sending abort command to node 0 in deference to winning node 9 for task 36
+Node 3 sending abort command to node 1 in deference to winning node 9 for task 36
+Node 0: Aborting calculation for task 36 in response to abort command from node 3
+Node 1: Aborting calculation for task 36 in response to abort command from node 3
+Node 3: Status message received from node 7 for task 35 (80%)
+Node 3: Status message received from node 9 for task 36 (55%)
+Node 3: Status message received from node 7 for task 35 (85%)
+Node 3: Status message received from node 7 for task 35 (90%)
+Node 3: Status message received from node 9 for task 36 (60%)
+Node 3: Status message received from node 7 for task 35 (95%)
+Node 3: Status message received from node 9 for task 36 (65%)
+Node 3: Status message received from node 7 for task 35 (100%)
+Node 7: Calculation for task 35 initiated by node 3 has completed
+Node 7: Sending start command to node 7 for task 74
+Node 7: Starting calculation for task 74 in response to start command from node 7
+Node 7: Sending start command to node 8 for task 74
+Node 7: Sending start command to node 9 for task 74
+Node 8: Starting calculation for task 74 in response to start command from node 7
+Node 9: Starting calculation for task 74 in response to start command from node 7
+Node 7: Status message received from node 7 for task 74 (5%)
+Node 7: Status message received from node 8 for task 74 (5%)
+Node 7: Status message received from node 9 for task 74 (5%)
+Node 3: Status message received from node 9 for task 36 (10%)
+Node 7: Status message received from node 9 for task 74 (15%)
+Node 7: Status message received from node 7 for task 74 (10%)
+Node 7: Status message received from node 8 for task 74 (10%)
+Node 7: Status message received from node 9 for task 74 (20%)
+Node 7: Status message received from node 7 for task 74 (15%)
+Node 3: Status message received from node 9 for task 36 (25%)
+Node 7: Status message received from node 9 for task 74 (30%)
+Node 7: Status message received from node 7 for task 74 (20%)
+Node 7: Status message received from node 8 for task 74 (15%)
+Node 3: Status message received from node 9 for task 36 (35%)
+Node 7: Status message received from node 9 for task 74 (40%)
+Node 7: Status message received from node 7 for task 74 (25%)
+Node 7: Status message received from node 9 for task 74 (45%)
+Node 3: Status message received from node 9 for task 36 (50%)
+Node 7: Status message received from node 8 for task 74 (20%)
+Node 7: Status message received from node 7 for task 74 (30%)
+Node 7: Status message received from node 9 for task 74 (55%)
+Node 7 sending abort command to node 7 in deference to winning node 9 for task 74
+Node 7 sending abort command to node 8 in deference to winning node 9 for task 74
+Node 7: Aborting calculation for task 74 in response to abort command from node 7
+Node 8: Aborting calculation for task 74 in response to abort command from node 7
+Node 3: Status message received from node 9 for task 36 (60%)
+Node 7: Status message received from node 9 for task 74 (65%)
+Node 7: Status message received from node 9 for task 74 (70%)
+Node 3: Status message received from node 9 for task 36 (75%)
+Node 7: Status message received from node 9 for task 74 (80%)
+Node 3: Status message received from node 9 for task 36 (90%)Node 7: Status message received from node 9 for task 74 (85%)
+
+Node 7: Status message received from node 9 for task 74 (95%)
+Node 3: Status message received from node 9 for task 36 (100%)
+Node 7: Status message received from node 9 for task 74 (105%)
+Node 9: Calculation for task 36 initiated by node 3 has completed
+Node 9: Sending start command to node 6 for task 93
+Node 9: Sending start command to node 7 for task 93
+Node 9: Sending start command to node 8 for task 93
+Node 9: Calculation for task 74 initiated by node 7 has completed
+Node 7: Starting calculation for task 93 in response to start command from node 9
+Node 9: Sending start command to node 9 for task 94
+Node 9: Sending start command to node 0 for task 94
+Node 8: Starting calculation for task 93 in response to start command from node 9
+Node 0: Starting calculation for task 94 in response to start command from node 9
+Node 9: Sending start command to node 1 for task 94
+Node 6: Starting calculation for task 93 in response to start command from node 9
+Node 1: Starting calculation for task 94 in response to start command from node 9
+Node 9: Starting calculation for task 94 in response to start command from node 9
+Node 9: Status message received from node 8 for task 93 (5%)
+Node 9: Status message received from node 7 for task 93 (5%)
+Node 9: Status message received from node 6 for task 93 (5%)
+Node 9: Status message received from node 0 for task 94 (5%)
+Node 9: Status message received from node 1 for task 94 (5%)
+Node 9: Status message received from node 9 for task 94 (5%)
+Node 9: Status message received from node 0 for task 94 (10%)
+Node 9: Status message received from node 7 for task 93 (10%)
+Node 9: Status message received from node 1 for task 94 (10%)
+Node 9: Status message received from node 9 for task 94 (10%)
+Node 9: Status message received from node 6 for task 93 (10%)
+Node 9: Status message received from node 8 for task 93 (10%)
+Node 9: Status message received from node 0 for task 94 (15%)
+Node 9: Status message received from node 7 for task 93 (15%)
+Node 9: Status message received from node 1 for task 94 (15%)
+Node 9: Status message received from node 0 for task 94 (20%)
+Node 9: Status message received from node 9 for task 94 (15%)
+Node 9: Status message received from node 6 for task 93 (15%)
+Node 9: Status message received from node 8 for task 93 (15%)
+Node 9: Status message received from node 7 for task 93 (20%)
+Node 9: Status message received from node 0 for task 94 (25%)
+Node 9: Status message received from node 1 for task 94 (20%)
+Node 9: Status message received from node 9 for task 94 (20%)
+Node 9: Status message received from node 0 for task 94 (30%)
+Node 9: Status message received from node 6 for task 93 (20%)
+Node 9: Status message received from node 7 for task 93 (25%)
+Node 9: Status message received from node 1 for task 94 (25%)
+Node 9: Status message received from node 8 for task 93 (20%)
+Node 9: Status message received from node 0 for task 94 (35%)
+Node 9: Status message received from node 9 for task 94 (25%)
+Node 9: Status message received from node 7 for task 93 (30%)
+Node 9: Status message received from node 6 for task 93 (25%)
+Node 9: Status message received from node 0 for task 94 (40%)
+Node 9: Status message received from node 1 for task 94 (30%)
+Node 9: Status message received from node 8 for task 93 (25%)
+Node 9: Status message received from node 0 for task 94 (45%)
+Node 9: Status message received from node 7 for task 93 (35%)
+Node 9: Status message received from node 9 for task 94 (30%)
+Node 9: Status message received from node 1 for task 94 (35%)
+Node 9: Status message received from node 6 for task 93 (30%)
+Node 9: Status message received from node 0 for task 94 (50%)
+Node 9: Status message received from node 7 for task 93 (40%)
+Node 9: Status message received from node 8 for task 93 (30%)
+Node 9 sending abort command to node 9 in deference to winning node 0 for task 94
+Node 9 sending abort command to node 1 in deference to winning node 0 for task 94
+Node 9: Aborting calculation for task 94 in response to abort command from node 9
+Node 1: Aborting calculation for task 94 in response to abort command from node 9
+Node 9: Status message received from node 1 for task 94 (40%)
+Node 9: Status message received from node 9 for task 94 (35%)
+Node 9: Status message received from node 0 for task 94 (55%)
+Node 9: Status message received from node 6 for task 93 (35%)
+Node 9: Status message received from node 7 for task 93 (45%)
+Node 9: Status message received from node 0 for task 94 (60%)
+Node 9: Status message received from node 8 for task 93 (35%)
+Node 9: Status message received from node 0 for task 94 (65%)
+Node 9: Status message received from node 7 for task 93 (50%)
+Node 9: Status message received from node 6 for task 93 (40%)
+Node 9 sending abort command to node 6 in deference to winning node 7 for task 93
+Node 9 sending abort command to node 8 in deference to winning node 7 for task 93
+Node 8: Aborting calculation for task 93 in response to abort command from node 9
+Node 6: Aborting calculation for task 93 in response to abort command from node 9
+Node 9: Status message received from node 0 for task 94 (70%)
+Node 9: Status message received from node 7 for task 93 (55%)
+Node 9: Status message received from node 0 for task 94 (75%)
+Node 9: Status message received from node 7 for task 93 (60%)
+Node 9: Status message received from node 0 for task 94 (80%)
+Node 9: Status message received from node 0 for task 94 (85%)
+Node 9: Status message received from node 7 for task 93 (65%)
+Node 9: Status message received from node 0 for task 94 (90%)
+Node 9: Status message received from node 7 for task 93 (70%)
+Node 9: Status message received from node 0 for task 94 (95%)
+Node 9: Status message received from node 7 for task 93 (75%)
+Node 9: Status message received from node 0 for task 94 (100%)
+Node 0: Calculation for task 94 initiated by node 9 has completed
+Node 0: Sending start command to node 0 for task 5
+Node 0: Sending start command to node 1 for task 5
+Node 0: Sending start command to node 2 for task 5
+Node 0: Starting calculation for task 5 in response to start command from node 0
+Node 1: Starting calculation for task 5 in response to start command from node 0
+Node 0: Status message received from node 0 for task 5 (5%)Node 2: Starting calculation for task 5 in response to start command from node 0
+
+Node 0: Status message received from node 1 for task 5 (5%)
+Node 0: Status message received from node 2 for task 5 (5%)
+Node 9: Status message received from node 7 for task 93 (80%)
+Node 0: Status message received from node 2 for task 5 (10%)
+Node 0: Status message received from node 0 for task 5 (10%)
+Node 9: Status message received from node 7 for task 93 (85%)
+Node 0: Status message received from node 1 for task 5 (10%)
+Node 0: Status message received from node 2 for task 5 (15%)
+Node 0: Status message received from node 0 for task 5 (15%)
+Node 0: Status message received from node 2 for task 5 (20%)
+Node 9: Status message received from node 7 for task 93 (90%)
+Node 0: Status message received from node 1 for task 5 (15%)
+Node 0: Status message received from node 2 for task 5 (25%)
+Node 0: Status message received from node 0 for task 5 (20%)
+Node 9: Status message received from node 7 for task 93 (95%)
+Node 0: Status message received from node 2 for task 5 (30%)
+Node 0: Status message received from node 1 for task 5 (20%)
+Node 9: Status message received from node 7 for task 93 (100%)
+Node 0: Status message received from node 0 for task 5 (25%)
+Node 7: Calculation for task 93 initiated by node 9 has completed
+Node 7: Sending start command to node 0 for task 75
+Node 0: Starting calculation for task 75 in response to start command from node 7
+Node 7: Sending start command to node 1 for task 75
+Node 7: Sending start command to node 2 for task 75
+Node 7: Status message received from node 0 for task 75 (5%)
+Node 1: Starting calculation for task 75 in response to start command from node 7
+Node 2: Starting calculation for task 75 in response to start command from node 7
+Node 7: Status message received from node 1 for task 75 (5%)
+Node 0: Status message received from node 2 for task 5 (5%)
+Node 7: Status message received from node 2 for task 75 (10%)
+Node 7: Status message received from node 0 for task 75 (10%)
+Node 0: Status message received from node 1 for task 5 (10%)
+Node 0: Status message received from node 2 for task 5 (15%)
+Node 0: Status message received from node 0 for task 5 (15%)
+Node 7: Status message received from node 1 for task 75 (15%)
+Node 7: Status message received from node 2 for task 75 (20%)
+Node 7: Status message received from node 0 for task 75 (20%)
+Node 0: Status message received from node 2 for task 5 (25%)
+Node 7: Status message received from node 1 for task 75 (20%)
+Node 0: Status message received from node 0 for task 5 (25%)
+Node 0: Status message received from node 1 for task 5 (25%)
+Node 7: Status message received from node 0 for task 75 (30%)
+Node 0: Status message received from node 2 for task 5 (30%)
+Node 7: Status message received from node 2 for task 75 (35%)
+Node 7: Status message received from node 0 for task 75 (35%)
+Node 7: Status message received from node 1 for task 75 (30%)
+Node 0: Status message received from node 2 for task 5 (40%)
+Node 0: Status message received from node 0 for task 5 (40%)
+Node 0: Status message received from node 1 for task 5 (35%)
+Node 7: Status message received from node 0 for task 75 (45%)
+Node 0: Status message received from node 2 for task 5 (45%)
+Node 7: Status message received from node 1 for task 75 (40%)
+Node 7: Status message received from node 2 for task 75 (50%)
+Node 7 sending abort command to node 0 in deference to winning node 2 for task 75
+Node 7 sending abort command to node 1 in deference to winning node 2 for task 75
+Node 1: Aborting calculation for task 75 in response to abort command from node 7
+Node 0: Status message received from node 0 for task 5 (50%)
+Node 0: Aborting calculation for task 75 in response to abort command from node 7
+Node 0: Status message received from node 2 for task 5 (55%)
+Node 0 sending abort command to node 0 in deference to winning node 2 for task 5
+Node 0 sending abort command to node 1 in deference to winning node 2 for task 5
+Node 0: Aborting calculation for task 5 in response to abort command from node 0
+Node 0: Status message received from node 1 for task 5 (45%)
+Node 1: Aborting calculation for task 5 in response to abort command from node 0
+Node 7: Status message received from node 2 for task 75 (60%)
+Node 0: Status message received from node 2 for task 5 (65%)
+Node 0: Status message received from node 0 for task 5 (55%)
+Node 0: Status message received from node 1 for task 5 (50%)
+Node 0: Status message received from node 2 for task 5 (70%)
+Node 0: Status message received from node 0 for task 5 (60%)
+Node 7: Status message received from node 2 for task 75 (75%)
+Node 0: Status message received from node 2 for task 5 (80%)
+Node 0: Status message received from node 1 for task 5 (55%)
+Node 0: Status message received from node 2 for task 5 (85%)
+Node 0: Status message received from node 0 for task 5 (65%)
+Node 7: Status message received from node 2 for task 75 (90%)
+Node 0: Status message received from node 2 for task 5 (95%)
+Node 0: Status message received from node 1 for task 5 (60%)
+Node 0: Status message received from node 0 for task 5 (70%)
+Node 0: Status message received from node 2 for task 5 (100%)
+Node 7: Status message received from node 2 for task 75 (105%)
+Node 2: Calculation for task 5 initiated by node 0 has completed
+Node 3: Starting calculation for task 21 in response to start command from node 2
+Node 2: Sending start command to node 3 for task 21
+Node 2: Sending start command to node 4 for task 21
+Node 2: Sending start command to node 5 for task 21
+Node 2: Calculation for task 75 initiated by node 7 has completed
+Node 2: Sending start command to node 6 for task 22
+Node 2: Sending start command to node 7 for task 22
+Node 6: Starting calculation for task 22 in response to start command from node 2
+Node 2: Sending start command to node 8 for task 22
+Node 7: Starting calculation for task 22 in response to start command from node 2
+Node 8: Starting calculation for task 22 in response to start command from node 2
+Node 5: Starting calculation for task 21 in response to start command from node 2
+Node 4: Starting calculation for task 21 in response to start command from node 2
+Node 2: Status message received from node 5 for task 21 (5%)
+Node 2: Status message received from node 6 for task 22 (5%)
+Node 2: Status message received from node 4 for task 21 (5%)
+Node 2: Status message received from node 8 for task 22 (5%)
+Node 2: Status message received from node 7 for task 22 (5%)
+Node 2: Sending query command to node 3 for task 21
+Node 3: Asking calculation for task 21 to send status to its initiator in response to query command from node 2
+Node 2: Status message received from node 3 for task 21 (5%)
+Node 2: Status message received from node 8 for task 22 (10%)
+Node 2: Status message received from node 6 for task 22 (10%)
+Node 2: Status message received from node 5 for task 21 (10%)
+Node 2: Status message received from node 4 for task 21 (10%)
+Node 2: Status message received from node 3 for task 21 (10%)
+Node 2: Status message received from node 7 for task 22 (10%)
+Node 2: Status message received from node 8 for task 22 (15%)
+Node 2: Status message received from node 6 for task 22 (15%)
+Node 2: Status message received from node 5 for task 21 (15%)
+Node 2: Status message received from node 4 for task 21 (15%)
+Node 2: Status message received from node 8 for task 22 (20%)
+Node 2: Status message received from node 3 for task 21 (15%)
+Node 2: Status message received from node 5 for task 21 (20%)
+Node 2: Status message received from node 6 for task 22 (20%)
+Node 2: Status message received from node 7 for task 22 (15%)
+Node 2: Status message received from node 8 for task 22 (25%)
+Node 2: Status message received from node 4 for task 21 (20%)
+Node 2: Status message received from node 5 for task 21 (25%)
+Node 2: Status message received from node 6 for task 22 (25%)
+Node 2: Status message received from node 8 for task 22 (30%)
+Node 2: Status message received from node 3 for task 21 (20%)
+Node 2: Status message received from node 4 for task 21 (25%)
+Node 2: Status message received from node 7 for task 22 (20%)
+Node 2: Status message received from node 5 for task 21 (30%)
+Node 2: Status message received from node 6 for task 22 (30%)
+Node 2: Status message received from node 8 for task 22 (35%)
+Node 2: Status message received from node 3 for task 21 (25%)
+Node 2: Status message received from node 4 for task 21 (30%)
+Node 2: Status message received from node 8 for task 22 (40%)
+Node 2: Status message received from node 6 for task 22 (35%)
+Node 2: Status message received from node 5 for task 21 (35%)
+Node 2: Status message received from node 7 for task 22 (25%)
+Node 2: Status message received from node 8 for task 22 (45%)
+Node 2: Status message received from node 5 for task 21 (40%)
+Node 2: Status message received from node 6 for task 22 (40%)
+Node 2: Status message received from node 4 for task 21 (35%)
+Node 2: Status message received from node 3 for task 21 (30%)
+Node 2: Status message received from node 8 for task 22 (50%)
+Node 2 sending abort command to node 6 in deference to winning node 8 for task 22
+Node 2 sending abort command to node 7 in deference to winning node 8 for task 22
+Node 6: Aborting calculation for task 22 in response to abort command from node 2
+Node 7: Aborting calculation for task 22 in response to abort command from node 2
+Node 2: Status message received from node 5 for task 21 (45%)
+Node 2: Status message received from node 4 for task 21 (40%)
+Node 2: Status message received from node 8 for task 22 (55%)
+Node 2: Status message received from node 3 for task 21 (35%)
+Node 2: Status message received from node 5 for task 21 (50%)
+Node 2: Status message received from node 8 for task 22 (60%)
+Node 2: Status message received from node 4 for task 21 (45%)
+Node 2 sending abort command to node 3 in deference to winning node 5 for task 21
+Node 2 sending abort command to node 4 in deference to winning node 5 for task 21
+Node 3: Aborting calculation for task 21 in response to abort command from node 2
+Node 4: Aborting calculation for task 21 in response to abort command from node 2
+Node 2: Status message received from node 5 for task 21 (55%)
+Node 2: Status message received from node 8 for task 22 (65%)
+Node 2: Status message received from node 5 for task 21 (60%)
+Node 2: Status message received from node 8 for task 22 (70%)
+Node 2: Status message received from node 8 for task 22 (75%)
+Node 2: Status message received from node 5 for task 21 (65%)
+Node 2: Status message received from node 8 for task 22 (80%)
+Node 2: Status message received from node 5 for task 21 (70%)
+Node 2: Status message received from node 8 for task 22 (85%)
+Node 2: Status message received from node 5 for task 21 (75%)
+Node 2: Status message received from node 8 for task 22 (90%)
+Node 2: Status message received from node 5 for task 21 (80%)
+Node 2: Status message received from node 8 for task 22 (95%)
+Node 2: Status message received from node 5 for task 21 (85%)
+Node 2: Status message received from node 8 for task 22 (100%)
+Node 8: Calculation for task 22 initiated by node 2 has completed
+Node 8: Sending start command to node 2 for task 82
+Node 8: Sending start command to node 3 for task 82
+Node 8: Sending start command to node 4 for task 82
+Node 4: Starting calculation for task 82 in response to start command from node 8
+Node 3: Starting calculation for task 82 in response to start command from node 8
+Node 2: Starting calculation for task 82 in response to start command from node 8
+Node 8: Status message received from node 4 for task 82 (5%)
+Node 2: Status message received from node 5 for task 21 (90%)Node 8: Status message received from node 3 for task 82 (5%)
+
+Node 8: Status message received from node 2 for task 82 (5%)
+Node 8: Status message received from node 3 for task 82 (10%)
+Node 8: Status message received from node 2 for task 82 (10%)
+Node 2: Status message received from node 5 for task 21 (95%)
+Node 8: Status message received from node 4 for task 82 (10%)
+Node 8: Status message received from node 3 for task 82 (15%)
+Node 8: Status message received from node 2 for task 82 (15%)
+Node 2: Status message received from node 5 for task 21 (100%)
+Node 5: Calculation for task 21 initiated by node 2 has completed
+Node 5: Sending start command to node 5 for task 556
+Node 5: Sending start command to node 6 for task 556
+Node 5: Sending start command to node 7 for task 556
+Node 5: Starting calculation for task 556 in response to start command from node 5
+Node 6: Starting calculation for task 556 in response to start command from node 5
+Node 8: Status message received from node 4 for task 82 (15%)
+Node 7: Starting calculation for task 556 in response to start command from node 5
+Node 5: Status message received from node 6 for task 556 (5%)
+Node 5: Status message received from node 5 for task 556 (5%)
+Node 5: Status message received from node 7 for task 556 (5%)
+Node 8: Status message received from node 2 for task 82 (20%)
+Node 8: Status message received from node 3 for task 82 (20%)
+Node 8: Status message received from node 4 for task 82 (20%)
+Node 5: Status message received from node 5 for task 556 (10%)
+Node 8: Status message received from node 2 for task 82 (25%)
+Node 5: Status message received from node 7 for task 556 (10%)
+Node 8: Status message received from node 3 for task 82 (25%)
+Node 5: Status message received from node 6 for task 556 (10%)
+Node 8: Status message received from node 4 for task 82 (25%)
+Node 8: Status message received from node 2 for task 82 (30%)
+Node 8: Status message received from node 3 for task 82 (30%)
+Node 5: Status message received from node 5 for task 556 (15%)
+Node 5: Status message received from node 7 for task 556 (15%)
+Node 5: Status message received from node 6 for task 556 (15%)
+Node 8: Status message received from node 4 for task 82 (30%)
+Node 8: Status message received from node 2 for task 82 (35%)
+Node 8: Status message received from node 3 for task 82 (35%)
+Node 5: Status message received from node 5 for task 556 (20%)
+Node 8: Status message received from node 2 for task 82 (40%)
+Node 8: Status message received from node 4 for task 82 (35%)
+Node 8: Status message received from node 3 for task 82 (40%)
+Node 5: Status message received from node 7 for task 556 (20%)
+Node 5: Status message received from node 6 for task 556 (20%)
+Node 8: Status message received from node 2 for task 82 (45%)
+Node 5: Status message received from node 5 for task 556 (25%)
+Node 8: Status message received from node 3 for task 82 (45%)
+Node 8: Status message received from node 4 for task 82 (40%)
+Node 5: Status message received from node 7 for task 556 (25%)
+Node 8: Status message received from node 2 for task 82 (50%)
+Node 8: Status message received from node 3 for task 82 (50%)
+Node 5: Status message received from node 6 for task 556 (25%)
+Node 8: Status message received from node 4 for task 82 (45%)
+Node 5: Status message received from node 5 for task 556 (30%)
+Node 8 sending abort command to node 2 in deference to winning node 3 for task 82
+Node 8 sending abort command to node 4 in deference to winning node 3 for task 82
+Node 2: Aborting calculation for task 82 in response to abort command from node 8
+Node 4: Aborting calculation for task 82 in response to abort command from node 8
+Node 8: Status message received from node 3 for task 82 (55%)
+Node 5: Status message received from node 7 for task 556 (30%)
+Node 5: Status message received from node 5 for task 556 (35%)
+Node 5: Status message received from node 6 for task 556 (30%)
+Node 8: Status message received from node 3 for task 82 (60%)
+Node 5: Status message received from node 7 for task 556 (35%)Node 8: Status message received from node 3 for task 82 (65%)
+
+Node 5: Status message received from node 5 for task 556 (40%)
+Node 5: Status message received from node 6 for task 556 (35%)
+Node 8: Status message received from node 3 for task 82 (70%)
+Node 5: Status message received from node 5 for task 556 (45%)
+Node 5: Status message received from node 7 for task 556 (40%)
+Node 8: Status message received from node 3 for task 82 (75%)
+Node 5: Status message received from node 6 for task 556 (40%)
+Node 5: Status message received from node 5 for task 556 (50%)
+Node 8: Status message received from node 3 for task 82 (80%)
+Node 5 sending abort command to node 6 in deference to winning node 5 for task 556
+Node 5 sending abort command to node 7 in deference to winning node 5 for task 556
+Node 6: Aborting calculation for task 556 in response to abort command from node 5
+Node 5: Status message received from node 7 for task 556 (45%)
+Node 7: Aborting calculation for task 556 in response to abort command from node 5
+Node 8: Status message received from node 3 for task 82 (85%)
+Node 5: Status message received from node 5 for task 556 (55%)
+Node 8: Status message received from node 3 for task 82 (90%)
+Node 5: Status message received from node 5 for task 556 (60%)
+Node 8: Status message received from node 3 for task 82 (95%)
+Node 5: Status message received from node 5 for task 556 (65%)
+Node 8: Status message received from node 3 for task 82 (100%)
+Node 3: Calculation for task 82 initiated by node 8 has completed
+Node 3: Sending start command to node 2 for task 37
+Node 2: Starting calculation for task 37 in response to start command from node 3
+Node 3: Sending start command to node 3 for task 37
+Node 3: Sending start command to node 4 for task 37
+Node 4: Starting calculation for task 37 in response to start command from node 3
+Node 3: Starting calculation for task 37 in response to start command from node 3
+Node 3: Status message received from node 2 for task 37 (5%)
+Node 3: Status message received from node 3 for task 37 (5%)
+Node 3: Status message received from node 4 for task 37 (5%)
+Node 3: Status message received from node 2 for task 37 (10%)
+Node 5: Status message received from node 5 for task 556 (70%)
+Node 3: Status message received from node 4 for task 37 (10%)
+Node 3: Status message received from node 3 for task 37 (10%)
+Node 3: Status message received from node 2 for task 37 (15%)
+Node 3: Status message received from node 4 for task 37 (15%)
+Node 5: Status message received from node 5 for task 556 (75%)
+Node 3: Status message received from node 3 for task 37 (15%)
+Node 3: Status message received from node 2 for task 37 (20%)
+Node 3: Status message received from node 4 for task 37 (20%)
+Node 5: Status message received from node 5 for task 556 (80%)
+Node 3: Status message received from node 2 for task 37 (25%)
+Node 3: Status message received from node 3 for task 37 (20%)
+Node 3: Status message received from node 4 for task 37 (25%)
+Node 5: Status message received from node 5 for task 556 (85%)
+Node 3: Status message received from node 2 for task 37 (30%)
+Node 3: Status message received from node 3 for task 37 (25%)
+Node 3: Status message received from node 4 for task 37 (30%)
+Node 3: Status message received from node 2 for task 37 (35%)
+Node 5: Status message received from node 5 for task 556 (90%)
+Node 3: Status message received from node 3 for task 37 (30%)
+Node 3: Status message received from node 2 for task 37 (40%)
+Node 3: Status message received from node 4 for task 37 (35%)
+Node 5: Status message received from node 5 for task 556 (95%)
+Node 3: Status message received from node 2 for task 37 (45%)
+Node 3: Status message received from node 3 for task 37 (35%)
+Node 3: Status message received from node 4 for task 37 (40%)
+Node 5: Status message received from node 5 for task 556 (100%)
+Node 3: Status message received from node 2 for task 37 (50%)
+Node 5: Calculation for task 556 initiated by node 5 has completed
+Node 5: Sending start command to node 8 for task 557
+Node 5: Sending start command to node 9 for task 557
+Node 8: Starting calculation for task 557 in response to start command from node 5
+Node 5: Sending start command to node 0 for task 557
+Node 3: Status message received from node 4 for task 37 (45%)
+Node 5: Status message received from node 8 for task 557 (5%)
+Node 3: Status message received from node 3 for task 37 (40%)
+Node 0: Starting calculation for task 557 in response to start command from node 5
+Node 5: Status message received from node 0 for task 557 (5%)
+Node 9: Starting calculation for task 557 in response to start command from node 5
+Node 5: Status message received from node 9 for task 557 (5%)
+Node 3 sending abort command to node 3 in deference to winning node 2 for task 37
+Node 3 sending abort command to node 4 in deference to winning node 2 for task 37
+Node 3: Aborting calculation for task 37 in response to abort command from node 3
+Node 4: Aborting calculation for task 37 in response to abort command from node 3
+Node 3: Status message received from node 2 for task 37 (55%)
+Node 5: Status message received from node 8 for task 557 (10%)
+Node 5: Status message received from node 9 for task 557 (10%)
+Node 5: Status message received from node 0 for task 557 (10%)
+Node 3: Status message received from node 2 for task 37 (60%)
+Node 5: Status message received from node 8 for task 557 (15%)
+Node 5: Status message received from node 9 for task 557 (15%)
+Node 5: Status message received from node 0 for task 557 (15%)
+Node 3: Status message received from node 2 for task 37 (65%)
+Node 5: Status message received from node 8 for task 557 (20%)
+Node 5: Status message received from node 9 for task 557 (20%)
+Node 3: Status message received from node 2 for task 37 (70%)
+Node 5: Status message received from node 0 for task 557 (20%)
+Node 5: Status message received from node 8 for task 557 (25%)
+Node 5: Status message received from node 9 for task 557 (25%)
+Node 3: Status message received from node 2 for task 37 (75%)
+Node 5: Status message received from node 8 for task 557 (30%)
+Node 5: Status message received from node 9 for task 557 (30%)
+Node 5: Status message received from node 0 for task 557 (25%)
+Node 5: Status message received from node 8 for task 557 (35%)
+Node 3: Status message received from node 2 for task 37 (80%)
+Node 5: Status message received from node 9 for task 557 (35%)
+Node 5: Status message received from node 0 for task 557 (30%)
+Node 5: Status message received from node 8 for task 557 (40%)
+Node 3: Status message received from node 2 for task 37 (85%)
+Node 5: Status message received from node 9 for task 557 (40%)
+Node 5: Status message received from node 0 for task 557 (35%)
+Node 5: Status message received from node 8 for task 557 (45%)
+Node 3: Status message received from node 2 for task 37 (90%)
+Node 5: Status message received from node 9 for task 557 (45%)
+Node 5: Status message received from node 8 for task 557 (50%)
+Node 5: Status message received from node 0 for task 557 (40%)
+Node 5: Status message received from node 9 for task 557 (50%)
+Node 3: Status message received from node 2 for task 37 (95%)
+Node 5 sending abort command to node 8 in deference to winning node 9 for task 557
+Node 5 sending abort command to node 0 in deference to winning node 9 for task 557
+Node 0: Aborting calculation for task 557 in response to abort command from node 5
+Node 8: Aborting calculation for task 557 in response to abort command from node 5
+Node 5: Status message received from node 9 for task 557 (55%)
+Node 3: Status message received from node 2 for task 37 (100%)
+Node 2: Calculation for task 37 initiated by node 3 has completed
+Node 9: Starting calculation for task 23 in response to start command from node 2
+Node 2: Sending start command to node 9 for task 23
+Node 2: Sending start command to node 0 for task 23
+Node 0: Starting calculation for task 23 in response to start command from node 2
+Node 2: Sending start command to node 1 for task 23
+Node 2: Status message received from node 9 for task 23 (5%)
+Node 1: Starting calculation for task 23 in response to start command from node 2
+Node 2: Status message received from node 0 for task 23 (5%)
+Node 2: Status message received from node 1 for task 23 (5%)
+Node 5: Status message received from node 9 for task 557 (10%)
+Node 2: Status message received from node 0 for task 23 (10%)
+Node 5: Status message received from node 9 for task 557 (15%)
+Node 2: Status message received from node 9 for task 23 (20%)
+Node 2: Status message received from node 1 for task 23 (10%)
+Node 2: Status message received from node 0 for task 23 (15%)
+Node 5: Status message received from node 9 for task 557 (25%)
+Node 2: Status message received from node 9 for task 23 (30%)
+Node 2: Status message received from node 0 for task 23 (20%)
+Node 5: Status message received from node 9 for task 557 (35%)
+Node 2: Status message received from node 1 for task 23 (15%)
+Node 2: Status message received from node 0 for task 23 (25%)
+Node 2: Status message received from node 9 for task 23 (40%)
+Node 2: Sending abort command to node 1 due to lag for task 23
+Node 5: Status message received from node 9 for task 557 (45%)
+Node 1: Aborting calculation for task 23 in response to abort command from node 2
+Node 2: Status message received from node 0 for task 23 (30%)
+Node 5: Status message received from node 9 for task 557 (50%)
+Node 2: Status message received from node 9 for task 23 (55%)
+Node 2: Status message received from node 0 for task 23 (35%)
+Node 2 sending abort command to node 0 in deference to winning node 9 for task 23
+Node 0: Aborting calculation for task 23 in response to abort command from node 2
+Node 5: Status message received from node 9 for task 557 (60%)
+Node 2: Status message received from node 9 for task 23 (65%)
+Node 5: Status message received from node 9 for task 557 (70%)
+Node 2: Status message received from node 9 for task 23 (75%)
+Node 5: Status message received from node 9 for task 557 (80%)
+Node 5: Status message received from node 9 for task 557 (85%)
+Node 2: Status message received from node 9 for task 23 (90%)
+Node 5: Status message received from node 9 for task 557 (95%)
+Node 2: Status message received from node 9 for task 23 (100%)
+Node 5: Status message received from node 9 for task 557 (105%)
+Node 9: Calculation for task 557 initiated by node 5 has completed
+Node 9: Sending start command to node 2 for task 95
+Node 2: Starting calculation for task 95 in response to start command from node 9
+Node 9: Sending start command to node 3 for task 95
+Node 9: Sending start command to node 4 for task 95
+Node 9: Calculation for task 23 initiated by node 2 has completed
+Node 9: Sending start command to node 5 for task 96
+Node 9: Sending start command to node 6 for task 96
+Node 9: Sending start command to node 7 for task 96
+Node 3: Starting calculation for task 95 in response to start command from node 9
+Node 7: Starting calculation for task 96 in response to start command from node 9
+Node 9: Status message received from node 2 for task 95 (5%)
+Node 4: Starting calculation for task 95 in response to start command from node 9
+Node 9: Status message received from node 4 for task 95 (5%)
+Node 5: Starting calculation for task 96 in response to start command from node 9
+Node 6: Starting calculation for task 96 in response to start command from node 9
+Node 9: Status message received from node 5 for task 96 (5%)
+Node 9: Status message received from node 7 for task 96 (5%)
+Node 9: Status message received from node 3 for task 95 (5%)
+Node 9: Status message received from node 6 for task 96 (5%)
+Node 9: Status message received from node 4 for task 95 (10%)
+Node 9: Status message received from node 3 for task 95 (10%)
+Node 9: Status message received from node 7 for task 96 (10%)
+Node 9: Status message received from node 6 for task 96 (10%)
+Node 9: Status message received from node 5 for task 96 (10%)
+Node 9: Status message received from node 2 for task 95 (10%)
+Node 9: Status message received from node 4 for task 95 (15%)
+Node 9: Status message received from node 3 for task 95 (15%)
+Node 9: Status message received from node 7 for task 96 (15%)

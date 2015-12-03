@@ -1,0 +1,183 @@
+Running test speculative-test
+Starting TCP server on port 8386
+<0>: received command: start task=0 node=5
+
+<0>: received command: start task=0 node=6
+
+<0>: received command: start task=0 node=7
+
+Starting TCP server on port 8387
+<0>: waiting for node servers...
+
+Starting TCP server on port 8392
+Starting TCP server on port 8393
+Starting TCP server on port 8391
+Starting TCP server on port 8394
+Starting TCP server on port 8388
+<5>: received command: start task=1 node=1
+
+<5>: received command: start task=1 node=2
+
+<5>: received command: start task=1 node=3
+
+<5>: waiting for node servers...
+
+Starting TCP server on port 8389
+<0>: sending initial messages...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=5...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=6...
+
+<0>: sending taskId=0,command=start,senderId=0,destId=7...
+
+Starting TCP server on port 8385
+Node 6: Starting calculation for task 0 in response to start command from node 0
+Node 7: Starting calculation for task 0 in response to start command from node 0
+Node 0: Status message received from node 6 for task 0 (5%)
+Node 0: Status message received from node 7 for task 0 (5%)
+<5>: sending initial messages...
+
+<5>: sending taskId=51,command=start,senderId=5,destId=1...
+
+<5>: sending taskId=51,command=start,senderId=5,destId=2...
+
+Node 1: Starting calculation for task 51 in response to start command from node 5
+<5>: sending taskId=51,command=start,senderId=5,destId=3...
+
+Starting TCP server on port 8390
+Node 2: Starting calculation for task 51 in response to start command from node 5
+Node 3: Starting calculation for task 51 in response to start command from node 5
+Node 5: Status message received from node 3 for task 51 (5%)
+Node 5: Status message received from node 2 for task 51 (5%)
+Node 5: Status message received from node 1 for task 51 (5%)
+Node 0: Status message received from node 6 for task 0 (10%)
+Node 0: Sending query command to node 5 for task 0
+Node 5: Status message received from node 3 for task 51 (10%)
+Node 0: Status message received from node 7 for task 0 (10%)
+Node 5: Status message received from node 1 for task 51 (10%)
+Node 0: Status message received from node 6 for task 0 (15%)
+Node 5: Status message received from node 2 for task 51 (10%)
+Node 5: Status message received from node 3 for task 51 (15%)
+Node 0: Status message received from node 6 for task 0 (20%)
+Node 5: Status message received from node 3 for task 51 (20%)
+Node 5: Status message received from node 1 for task 51 (15%)
+Node 5: Status message received from node 2 for task 51 (15%)
+Node 0: Status message received from node 7 for task 0 (15%)
+Node 0: Status message received from node 6 for task 0 (25%)
+Node 5: Status message received from node 3 for task 51 (25%)
+Node 5: Status message received from node 2 for task 51 (20%)
+Node 5: Status message received from node 1 for task 51 (20%)
+Node 0: Status message received from node 6 for task 0 (30%)
+Node 5: Status message received from node 3 for task 51 (30%)
+Node 0: Status message received from node 7 for task 0 (20%)
+Node 0: Status message received from node 6 for task 0 (35%)
+Node 5: Status message received from node 3 for task 51 (35%)
+Node 5: Status message received from node 2 for task 51 (25%)
+Node 5: Status message received from node 1 for task 51 (25%)
+Node 0: Status message received from node 7 for task 0 (25%)
+Node 5: Status message received from node 3 for task 51 (40%)
+Node 0: Status message received from node 6 for task 0 (40%)
+Node 5: Status message received from node 2 for task 51 (30%)
+Node 5: Status message received from node 1 for task 51 (30%)
+Node 5: Status message received from node 3 for task 51 (45%)
+Node 0: Status message received from node 6 for task 0 (45%)
+Node 0: Status message received from node 7 for task 0 (30%)
+Node 5: Status message received from node 2 for task 51 (35%)
+Node 5: Status message received from node 3 for task 51 (50%)
+Node 5: Status message received from node 1 for task 51 (35%)
+Node 0: Status message received from node 6 for task 0 (50%)
+Node 5 sending abort command to node 1 in deference to winning node 3 for task 51
+Node 5 sending abort command to node 2 in deference to winning node 3 for task 51
+Node 1: Aborting calculation for task 51 in response to abort command from node 5Node 5: Status message received from node 3 for task 51 (55%)
+
+Node 2: Aborting calculation for task 51 in response to abort command from node 5
+Node 0 sending abort command to node 5 in deference to winning node 6 for task 0
+Node 0 sending abort command to node 7 in deference to winning node 6 for task 0
+Node 7: Aborting calculation for task 0 in response to abort command from node 0
+Node 0: Status message received from node 6 for task 0 (55%)
+Node 5: Status message received from node 3 for task 51 (60%)
+Node 0: Status message received from node 6 for task 0 (60%)
+Node 5: Status message received from node 3 for task 51 (65%)
+Node 0: Status message received from node 6 for task 0 (65%)
+Node 5: Status message received from node 3 for task 51 (70%)
+Node 0: Status message received from node 6 for task 0 (70%)
+Node 5: Status message received from node 3 for task 51 (75%)
+Node 0: Status message received from node 6 for task 0 (75%)
+Node 5: Status message received from node 3 for task 51 (80%)
+Node 5: Status message received from node 3 for task 51 (85%)
+Node 0: Status message received from node 6 for task 0 (80%)
+Node 5: Status message received from node 3 for task 51 (90%)
+Node 0: Status message received from node 6 for task 0 (85%)
+Node 5: Status message received from node 3 for task 51 (95%)
+Node 0: Status message received from node 6 for task 0 (90%)
+Node 5: Status message received from node 3 for task 51 (100%)
+Node 3: Calculation for task 51 initiated by node 5 has completed
+Node 0: Status message received from node 6 for task 0 (95%)
+Node 3: Sending start command to node 4 for task 31
+Node 3: Sending start command to node 5 for task 31
+Node 4: Starting calculation for task 31 in response to start command from node 3
+Node 3: Sending start command to node 6 for task 31
+Node 5: Starting calculation for task 31 in response to start command from node 3
+Node 6: Starting calculation for task 31 in response to start command from node 3
+Node 3: Status message received from node 5 for task 31 (5%)
+Node 3: Status message received from node 6 for task 31 (5%)
+Node 3: Status message received from node 4 for task 31 (5%)
+Node 0: Status message received from node 6 for task 0 (10%)
+Node 3: Status message received from node 5 for task 31 (10%)
+Node 3: Status message received from node 6 for task 31 (15%)
+Node 3: Status message received from node 4 for task 31 (10%)
+Node 0: Status message received from node 6 for task 0 (20%)
+Node 3: Status message received from node 5 for task 31 (15%)
+Node 3: Status message received from node 6 for task 31 (25%)
+Node 0: Status message received from node 6 for task 0 (30%)
+Node 3: Status message received from node 4 for task 31 (15%)
+Node 3: Status message received from node 5 for task 31 (20%)
+Node 0: Status message received from node 6 for task 0 (35%)
+Node 3: Status message received from node 6 for task 31 (40%)
+Node 0: Status message received from node 6 for task 0 (45%)
+Node 3: Status message received from node 4 for task 31 (20%)
+Node 3: Status message received from node 5 for task 31 (25%)
+Node 3: Status message received from node 6 for task 31 (50%)
+Node 3 sending abort command to node 4 in deference to winning node 6 for task 31
+Node 3 sending abort command to node 5 in deference to winning node 6 for task 31
+Node 4: Aborting calculation for task 31 in response to abort command from node 3
+Node 5: Aborting calculation for task 31 in response to abort command from node 3
+Node 0: Status message received from node 6 for task 0 (55%)
+Node 0: Status message received from node 6 for task 0 (60%)
+Node 3: Status message received from node 6 for task 31 (65%)
+Node 0: Status message received from node 6 for task 0 (70%)
+Node 3: Status message received from node 6 for task 31 (75%)
+Node 0: Status message received from node 6 for task 0 (80%)
+Node 3: Status message received from node 6 for task 31 (85%)
+Node 0: Status message received from node 6 for task 0 (90%)
+Node 0: Status message received from node 6 for task 0 (95%)
+Node 3: Status message received from node 6 for task 31 (100%)
+Node 6: Calculation for task 0 initiated by node 0 has completed
+Node 7: Starting calculation for task 61 in response to start command from node 6
+Node 6: Sending start command to node 7 for task 61
+Node 6: Sending start command to node 8 for task 61
+Node 6: Status message received from node 7 for task 61 (5%)
+Node 6: Sending start command to node 9 for task 61
+Node 6: Calculation for task 31 initiated by node 3 has completed
+Node 6: Sending start command to node 0 for task 62
+Node 6: Sending start command to node 1 for task 62
+Node 9: Starting calculation for task 61 in response to start command from node 6
+Node 6: Sending start command to node 2 for task 62
+Node 0: Starting calculation for task 62 in response to start command from node 6
+Node 1: Starting calculation for task 62 in response to start command from node 6
+Node 8: Starting calculation for task 61 in response to start command from node 6
+Node 2: Starting calculation for task 62 in response to start command from node 6
+Node 6: Status message received from node 9 for task 61 (5%)
+Node 6: Status message received from node 1 for task 62 (5%)
+Node 0: Status message received from node 6 for task 0 (105%)
+Node 6: Status message received from node 2 for task 62 (5%)
+Node 6: Status message received from node 0 for task 62 (5%)
+Node 6: Status message received from node 8 for task 61 (5%)
+Node 6: Status message received from node 0 for task 62 (10%)
+Node 6: Status message received from node 9 for task 61 (10%)
+Node 6: Status message received from node 2 for task 62 (10%)
+Node 6: Status message received from node 7 for task 61 (10%)
+Node 6: Status message received from node 1 for task 62 (10%)
+Node 6: Status message received from node 8 for task 61 (10%)
+Node 6: Status message received from node 0 for task 62 (15%)

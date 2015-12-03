@@ -6,6 +6,7 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Timer;  
 import java.util.TimerTask;
+import java.util.Random;
 
 public class Calculation {
 
@@ -20,7 +21,7 @@ public class Calculation {
 	ServerRecord initiator;
 	
 	static int base_calc_time;
-	static int status_increment = 10;
+	static int status_increment;
 	static int status_report_interval;
 	
 	static class calculator extends TimerTask {
@@ -40,9 +41,9 @@ public class Calculation {
 			
 			percent_complete += 5;
 			
-			if (percent_complete == 100) this.cancel();
+			if (percent_complete >= 100) this.cancel();
 			
-			if (percent_complete % status_increment == 0 || percent_complete==100) sendStatusMsg(initiator, taskId, nodeId);
+			if (percent_complete % status_increment == 0 || percent_complete>=100) sendStatusMsg(initiator, taskId, nodeId);
 			
 			//System.out.println("Node "+nodeId+" task "+taskId+": percent_complete="+percent_complete);
 			
@@ -50,7 +51,7 @@ public class Calculation {
 	
 	}
 	
-	public Calculation(int taskId, int nodeId, ServerRecord initiator, int load){
+	public Calculation(int taskId, int nodeId, ServerRecord initiator, int load, int base_calc_time, int status_increment, int status_report_interval){
 		
 		calc = new calculator(taskId, nodeId, initiator);
 		this.nodeId = nodeId;
@@ -59,19 +60,17 @@ public class Calculation {
 		this.initiator = initiator;
 		timer = new Timer();
 		percent_complete = 0;
-		start();
-	}
-	
-	public void setParams(int base_time, int status_increment, int status_report_interval){
 		this.base_calc_time = base_calc_time;
 		this.status_increment = status_increment;
 		this.status_report_interval = status_report_interval;
+		start();
 	}
-	
+		
 	public void start(){
 		
-		int base_period = 500; //at load calculation takes 500ms.  Take up to 500ms longer depending on load.
-		timer.scheduleAtFixedRate(calc, 0, base_period + (base_period*(load/100)));
+		Random rand = new Random();
+		int random_delay = rand.nextInt((base_calc_time) + 1); //random from 0 to base_period
+		timer.scheduleAtFixedRate(calc, 0, base_calc_time + (base_calc_time*(load/100)+random_delay));
 		
 	}
 	
@@ -85,7 +84,7 @@ public class Calculation {
 	}
 	
 	public boolean isComplete(){
-		return (percent_complete==100);
+		return (percent_complete>=100);
 	}
 			
 	public int getStatus(){
@@ -93,6 +92,7 @@ public class Calculation {
 	}
 	
 	public boolean sendStatus(){
+		if (aborted) return false;
 		return sendStatusMsg(initiator, taskId, nodeId);
 	}
 	
